@@ -1,11 +1,11 @@
 ---
 title: "Case Studies"
-description: "Applying the AI-native documentation doctrine to real-world projects (Surveilr, Opsfolio, SQLite, PostgreSQL, Redis)."
+description: "Applying the AI-native documentation doctrine to real-world projects (`surveilr`, Opsfolio, SQLite, PostgreSQL, Redis)."
 intended-audience: ["Engineers", "Product Managers", "Technical Writers", "LLM Prompt Engineers"]
 version: "1.0"
 ai-context:
   prompt-grounding: |-
-    Surveilr (compliance and security):
+    `surveilr` (compliance and security):
     - Modules per control, task-based guides (e.g., “Generate HIPAA audit report”). 
     - Strong warnings where actions affect evidence or alerts.
     - Version and audience tags to tailor operator vs. auditor guidance.
@@ -29,24 +29,24 @@ ai-context:
 ---
 # Case Studies
 
-To make the doctrine more concrete, let’s explore how it would apply in a few real-world contexts. We’ll look at two of Netspective’s products (Surveilr and Opsfolio) and three popular open-source projects (SQLite, PostgreSQL, Redis). In each case, we’ll consider the current state (old world) and how the new AI-native approach could transform their documentation and user experience.
+To make the doctrine more concrete, let’s explore how it would apply in a few real-world contexts. We’ll look at two of Netspective’s products (`surveilr` and Opsfolio) and three popular open-source projects (SQLite, PostgreSQL, Redis). In each case, we’ll consider the current state (old world) and how the new AI-native approach could transform their documentation and user experience.
 
-**Surveilr:** Surveilr is an automated compliance and security management platform. Its documentation likely covers a lot of policy configurations, compliance controls, and evidence gathering procedures. In the old world, an engineer using Surveilr might have to read through a user guide PDF or navigate a web portal to figure out how to, say, “generate a HIPAA compliance report” or “add a new compliance policy.” Applying AI-native principles, we’d restructure Surveilr’s docs into a modular knowledge base:
+`surveilr`: `surveilr` is an automated compliance and security management platform. Its documentation likely covers a lot of policy configurations, compliance controls, and evidence gathering procedures. In the old world, an engineer using `surveilr` might have to read through a user guide PDF or navigate a web portal to figure out how to, say, “generate a HIPAA compliance report” or “add a new compliance policy.” Applying AI-native principles, we’d restructure `surveilr`’s docs into a modular knowledge base:
 
-* Each compliance standard (HIPAA, GDPR, etc.) gets its own section with fact modules on specific controls, requirements, and how Surveilr addresses them.
+* Each compliance standard (HIPAA, GDPR, etc.) gets its own section with fact modules on specific controls, requirements, and how `surveilr` addresses them.
 * Common tasks (like *“Gather evidence for control XYZ”* or *“Automate an audit report”*) are documented step-by-step in self-contained articles. Each article’s title is phrased as a user query (“How to generate an audit report for HIPAA”, “How to onboard a new system for monitoring”).
-* Surveilr’s system might have many configuration options; each option is documented with its purpose and impact. For example, if there’s a setting “Enable continuous monitoring”, its doc entry clearly states what it does and when to use it.
+* `surveilr`’s system might have many configuration options; each option is documented with its purpose and impact. For example, if there’s a setting “Enable continuous monitoring”, its doc entry clearly states what it does and when to use it.
 * Warnings and best practices are embedded so that the AI will relay them. If a certain action might disable alerts, the documentation module for that action would include a note: “*Important: Disabling this will stop all email alerts.*” An AI reading that will include it in the answer.
-* By ingesting this documentation into an AI assistant (perhaps within the Surveilr interface or as a chatbot on the support site), a compliance officer could ask in plain English: “How do I prove that our database backups are encrypted for HIPAA?” The AI would pull up the relevant Surveilr doc on evidence collection for encryption controls and guide the user: “Surveilr automatically logs backup encryption status. To generate a report, go to… etc.” In the background, it used the doc that we wrote for that very question.
-* Surveilr often integrates with regulations; keeping information updated is key (regulations change). An AI-first doc approach means if a regulation update happens, you update that fact in one place in the docs (“Policy XYZ new requirement as of 2025…”) and the AI will then incorporate that into all relevant answers. This is more efficient than retraining an AI or relying on memory – we’re leveraging the dynamic doc.
+* By ingesting this documentation into an AI assistant (perhaps within the `surveilr` interface or as a chatbot on the support site), a compliance officer could ask in plain English: “How do I prove that our database backups are encrypted for HIPAA?” The AI would pull up the relevant `surveilr` doc on evidence collection for encryption controls and guide the user: “`surveilr` automatically logs backup encryption status. To generate a report, go to… etc.” In the background, it used the doc that we wrote for that very question.
+* `surveilr` often integrates with regulations; keeping information updated is key (regulations change). An AI-first doc approach means if a regulation update happens, you update that fact in one place in the docs (“Policy XYZ new requirement as of 2025…”) and the AI will then incorporate that into all relevant answers. This is more efficient than retraining an AI or relying on memory – we’re leveraging the dynamic doc.
 
 **Opsfolio:** Opsfolio captures risks, IT assets, and documents ops work (risk & compliance management). Its documentation spans multiple user roles (sysadmins, project managers, risk officers). In an AI-first model:
 
 * We tag documentation modules by role. For example, an “Asset Inventory Guide” might be tagged `audience: System Administrators` and another “Risk Dashboard Usage” tagged `audience: Risk Officers`. The AI assistant, if it knows the user’s role (perhaps through login context or by asking), can tailor answers accordingly. If a sysadmin asks “How do I add a new server to Opsfolio?”, the AI will use the technical how-to. If a risk officer asks something similar but in less technical terms (“How do we record new assets?”), the AI might provide a higher-level answer drawing from more summary docs.
 * Opsfolio likely has a lot of interconnected pieces (assets, risks, controls). Documentation would have a module for each major entity and its fields (“Asset: definition and fields”, “Risk: how it’s calculated”, etc.). If a user asks “What is the ‘Exposure Score’ in Opsfolio?”, the AI would answer with the definition straight from the docs (e.g., “Exposure Score is a calculated risk metric that...” – presumably referencing the doc).
 * For troubleshooting (Opsfolio integration issues, etc.), every error message or common issue (like “data import fails”) is documented. The AI can serve as a first-line support, walking the user through solutions from the docs (“Have you provided the API key? According to docs, error 401 means invalid credentials.”).
-* Both Surveilr and Opsfolio have a compliance angle, so accuracy is crucial. The AI-first approach helps ensure that if, for example, a regulation threshold changes, updating the docs will immediately correct the AI’s guidance. This reduces the risk of an AI giving outdated compliance advice (a big no-no).
-* By implementing AnythingLLM internally, Netspective’s engineers could have a private chatbot for Opsfolio/Surveilr docs that speeds up onboarding new team members or answering client questions by pulling the answers from documentation instantly.
+* Both `surveilr` and Opsfolio have a compliance angle, so accuracy is crucial. The AI-first approach helps ensure that if, for example, a regulation threshold changes, updating the docs will immediately correct the AI’s guidance. This reduces the risk of an AI giving outdated compliance advice (a big no-no).
+* By implementing AnythingLLM internally, Netspective’s engineers could have a private chatbot for Opsfolio/`surveilr` docs that speeds up onboarding new team members or answering client questions by pulling the answers from documentation instantly.
 
 **SQLite (open-source database):** SQLite’s docs are known to be very detailed, but largely human-oriented (a sprawling FAQ, lengthy spec documents). With AI-native documentation:
 
@@ -75,7 +75,7 @@ To make the doctrine more concrete, let’s explore how it would apply in a few 
 
 Through these case studies, a common theme emerges: **the AI-first approach doesn’t necessarily require creating completely new documentation** – it often involves **reorganizing, tagging, and sometimes augmenting existing docs** to fill gaps (especially around common tasks and troubleshooting). The payoff is a drastically improved support experience: instead of combing through manuals or Googling, users (or engineers internally) get immediate, context-specific answers.
 
-For the internal Netspective products (Surveilr and Opsfolio), adopting this doctrine could be a competitive advantage – customers get an “expert assistant” alongside the product. For open-source communities like PostgreSQL or Redis, it can reduce repetitive Q\&A on forums as the official docs themselves become more accessible through an AI.
+For the internal Netspective products (`surveilr` and Opsfolio), adopting this doctrine could be a competitive advantage – customers get an “expert assistant” alongside the product. For open-source communities like PostgreSQL or Redis, it can reduce repetitive Q\&A on forums as the official docs themselves become more accessible through an AI.
 
 One more mini case: **Myths vs Truths documentation page ([like this one](old-vs-new-world.md)).** Imagine if an AI had ingested this doctrine paper itself. If someone asked, “Is AI going to replace documentation writers?”, the AI would answer with the truth we stated: that AI won’t replace the need for quality docs or writers, because it only can work from existing content, and that human expertise is needed to provide accurate information. In other words, our own documentation here is ready to be consumed by an AI to answer such meta-questions about documentation strategy!
 

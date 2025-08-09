@@ -7,6 +7,7 @@ The word **"praxis"** means the process of using a theory or lesson in a practic
 ## Key Directives
 
 - [AI Native Technical Communications Doctrine](./ai-native-technical-communications-doctrine)
+- [Trustable AI Interactions Engineering Manifesto](./ai-interactions-engineering-manifesto)
 
 ## What you'll find here
 
