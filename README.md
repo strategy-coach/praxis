@@ -1,13 +1,13 @@
 # The Praxis
 
-Welcome to **The Praxis**, our engineering community's living guide to how we work, why we work, and the principles that guide our decisions.
+Welcome to **The Praxis**, our engineering community's living guide to how we work and the principles that guide our decisions.
 
 The word **"praxis"** means the process of using a theory or lesson in a practical way. This repository isn't a rulebook—it's a collection of our shared understandings, doctrines, and manifestos that help us navigate our work and our mission together.
 
 ## Key Directives
 
-- [AI Native Technical Communications Doctrine](./ai-native-technical-communications-doctrine)
-- [Trustable AI Interactions Engineering Manifesto](./ai-interactions-engineering-manifesto)
+- [AI Native Technical Communications Doctrine](./ai-native-technical-communications-doctrine#readme)
+- [Trustable AI Interactions Engineering Manifesto](./ai-interactions-engineering-manifesto#readme)
 
 ## What you'll find here
 
