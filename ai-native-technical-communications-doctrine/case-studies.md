@@ -27,7 +27,6 @@ ai-context:
     - One module per command and per memory/eviction policy.
     - Pattern guides (rate limiting, caching) with examples and caveats.
 ---
-
 # Case Studies
 
 To make the doctrine more concrete, let’s explore how it would apply in a few real-world contexts. We’ll look at two of Netspective’s products (Surveilr and Opsfolio) and three popular open-source projects (SQLite, PostgreSQL, Redis). In each case, we’ll consider the current state (old world) and how the new AI-native approach could transform their documentation and user experience.
@@ -78,6 +77,6 @@ Through these case studies, a common theme emerges: **the AI-first approach does
 
 For the internal Netspective products (Surveilr and Opsfolio), adopting this doctrine could be a competitive advantage – customers get an “expert assistant” alongside the product. For open-source communities like PostgreSQL or Redis, it can reduce repetitive Q\&A on forums as the official docs themselves become more accessible through an AI.
 
-One more mini case: **Myths vs Truths documentation page (like this one).** Imagine if an AI had ingested this doctrine paper itself. If someone asked, “Is AI going to replace documentation writers?”, the AI would answer with the truth we stated: that AI won’t replace the need for quality docs or writers, because it only can work from existing content, and that human expertise is needed to provide accurate information. In other words, our own documentation here is ready to be consumed by an AI to answer such meta-questions about documentation strategy!
+One more mini case: **Myths vs Truths documentation page ([like this one](old-vs-new-world.md)).** Imagine if an AI had ingested this doctrine paper itself. If someone asked, “Is AI going to replace documentation writers?”, the AI would answer with the truth we stated: that AI won’t replace the need for quality docs or writers, because it only can work from existing content, and that human expertise is needed to provide accurate information. In other words, our own documentation here is ready to be consumed by an AI to answer such meta-questions about documentation strategy!
 
 Having explored these cases, you can see how the doctrine can be applied broadly: from enterprise tools to developer tools. The specifics differ, but the underlying patterns – modular docs, embedded context, factual focus – remain constant.

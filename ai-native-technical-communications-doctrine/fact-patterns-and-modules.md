@@ -24,7 +24,6 @@ ai-context:
     - Cross-link related modules; minimize contradictory duplicates.
     - Tag with version and audience to avoid cross-edition confusion.
 ---
-
 # Fact Patterns and Modules
 
 One of the most practical steps in making documentation AI-native is to **break your knowledge into retrievable units**, which we can call modules or fact modules. This process is both an art and a science. It’s about identifying the *fact patterns* in your product – the recurring kinds of information or questions – and ensuring each is documented in a tidy, accessible way.
@@ -38,7 +37,7 @@ Think of your product and list out the types of “facts” someone might ask ab
 * Error messages and troubleshooting (“What does error code 123 mean? How to fix Y error?”).
 * Best practices or recommendations (“Recommended approach for X?”).
 
-In a human-first doc, these facts might be sprinkled across pages or discussed in paragraph form. In AI-first doc, **each atomic fact or small group of related facts should ideally live in its own module or clearly delineated section.** This ensures that when an AI searches for that fact, it finds a dedicated chunk rather than a passing mention.
+In a human-first doc, these facts might be sprinkled across pages or discussed in paragraph form. In AI-first doc, each atomic fact or small group of related facts should ideally live in its own module or clearly delineated section**.** This ensures that when an AI searches for that fact, it finds a dedicated chunk rather than a passing mention.
 
 For example, let’s say we have an open-source database (like PostgreSQL). Fact patterns include:
 
@@ -51,7 +50,7 @@ Once you identify these fact patterns, the next step is to **module-ize** them i
 
 * Use descriptive, specific headings (H1/H2 titles) that match the concept or question. If the fact is a definition, the heading should be the term itself (“What is a Replica Set?” could just be “Replica Set” as the heading, with the text explaining it).
 * Keep modules concise. A module could be a few sentences to a few paragraphs, but generally not pages long. If it’s too long, consider if it contains multiple facts that should be split. The idea is that each module should ideally answer one question really well. If the answer is too complex, maybe it’s actually multiple questions.
-* Ensure each module is **self-contained contextually**. If a module depends on knowledge from another, either merge them or clearly reference the other. For instance, if you have a module “Transactions in Redis” and it assumes the reader knows what a Redis command is, that’s fine because presumably the AI can fetch definitions too. But within that module, if you use a concept that has its own module, you might want to mention it (e.g., “Redis transactions use the `MULTI` and `EXEC` commands (see respective command reference).”). This way the AI might bring in those references if needed.
+* Ensure each module is self-contained contextually. If a module depends on knowledge from another, either merge them or clearly reference the other. For instance, if you have a module “Transactions in Redis” and it assumes the reader knows what a Redis command is, that’s fine because presumably the AI can fetch definitions too. But within that module, if you use a concept that has its own module, you might want to mention it (e.g., “Redis transactions use the `MULTI` and `EXEC` commands (see respective command reference).”). This way the AI might bring in those references if needed.
 
 **Avoiding overlap and conflict:** With many small modules, one concern is ensuring they don’t contradict each other or go out of sync. This is where having a single source-of-truth fact per module helps. Instead of describing the same feature in multiple places, centralize it and have others reference it. For example, if a certain limitation (say “maximum number of connections = N”) applies system-wide, document it in one module (maybe under a “Limits” section) and have other relevant sections mention that or link to it. Redundancy in wording is not as problematic as inconsistency; the AI might retrieve one or the other, so it’s okay to repeat a fact in multiple modules *as long as it’s consistent*. However, if you update a value, update it everywhere it appears. This is just good documentation practice in general, but especially important when an AI might pull from either place and we don’t want conflicting info.
 
