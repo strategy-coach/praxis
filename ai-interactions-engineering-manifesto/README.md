@@ -1,5 +1,7 @@
 # Trustable AI Interactions Engineering Manifesto
 
+> by Shahid N. Shah
+
 This whitepaper educates engineering teams to build trustworthy AI-native systems by mastering the discipline of knowledge transformation and context engineering. Teams will learn how to convert enterprise documents from traditional formats (PDF, Word, Excel) into semantically structured, provenance-enriched Markdown — the canonical trust layer for LLM-powered applications.
 
 Rather than treating files as static content, the strategy reframes every document as a unique knowledge container that must be unpacked, structured, cited, and verified. Engineers will learn why AI-native systems require custom per-document scripts (not per file type), how to embed traceable metadata into every chunk, and how to design for downstream compatibility with LLMs, ontology frameworks, and graph-based retrieval.
