@@ -1,5 +1,7 @@
 # AI Context Playbooks – ChatGPT 5 Prompt Reskilling
 
+👉 Please sure to read [OpenAI GPT-5 prompting guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) first.
+
 With the release of **ChatGPT 5**, OpenAI has introduced a *multi-model routing* capability — meaning that your prompt is no longer sent to a single fixed model. Instead, ChatGPT 5 dynamically routes different parts of your request to the most appropriate underlying model (including GPT-4o and other specialized sub-models) based on the nature of the task.
 
 While this makes ChatGPT 5 more powerful and adaptive than GPT-4o, it also changes the way we must approach **prompt writing**:
