@@ -9,6 +9,10 @@ The word **"praxis"** means the process of using a theory or lesson in a practic
 - [AI Native Technical Communications Doctrine](./ai-native-technical-communications-doctrine#readme)
 - [Trustable AI Interactions Engineering Manifesto](./ai-interactions-engineering-manifesto#readme)
 
+## Educational Materials
+
+- AI Context Playbooks - [ChatGPT 5 Prompt Reskilling](./ai-context-playbooks/chatgpt5-skills#readme)
+
 ## What you'll find here
 
 This repo is structured to be a source of truth and inspiration, not a list of rigid policies. You'll find:
