@@ -12,7 +12,7 @@ The expectations step in modern AI-native projects is even more important than i
 
 See YouTube Video [The Contract-First Prompting Blueprint](https://www.youtube.com/watch?v=i4Jfl1IW-_U) for how to convey intent to AI.
 
-<img src="Expect_UAT.drawio.svg" alt="Expectation_UAT Architecture">
+<img src="expectation-uat.drawio.svg" alt="Expectation_UAT Architecture">
 
 ### Expectations Engineering as the First Deliverable
 

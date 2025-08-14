@@ -4,7 +4,7 @@
 
 In today’s fast-paced digital transformation landscape, businesses and developers face the challenge of integrating diverse AI and machine learning models into their applications. With an increasing number of cloud-based and open-source AI services, the need for an effective management layer that can streamline and secure these integrations becomes critical. This is where the **AI Gateway** comes in, acting as a central API hub that abstracts the complexities of different AI services and models, enabling seamless communication and interaction.
 
-<img src="AI_Gateway.drawio.svg" alt="AI Gateway Architecture">
+<img src="ai-gateway.drawio.svg" alt="AI Gateway Architecture">
 
 ## 2. AI Gateway Strategy for Trustable AI Systems
 
