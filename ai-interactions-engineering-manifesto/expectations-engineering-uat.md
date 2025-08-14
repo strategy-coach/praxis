@@ -12,6 +12,8 @@ The expectations step in modern AI-native projects is even more important than i
 
 See YouTube Video [The Contract-First Prompting Blueprint](https://www.youtube.com/watch?v=i4Jfl1IW-_U) for how to convey intent to AI.
 
+<img src="Expect_UAT.drawio.svg" alt="Expectation_UAT Architecture">
+
 ### Expectations Engineering as the First Deliverable
 
 We treat expectations documents as structured hypotheses about what the AI system should accomplish from the end-user’s perspective. This is not just a list of requirements — it's a formal articulation of user intent, acceptable behaviors, and measurable outcomes with trustworthiness definitions (meaning what makes the interactions and answers trustworthy in the business context?).
