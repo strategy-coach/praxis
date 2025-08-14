@@ -62,3 +62,4 @@ By following this guide, an organization can gradually transition to AI-first do
 7. [Implementation Notes](implementation-notes.md)
 8. [Case Studies](case-studies.md)
 9. [Writing for AI Checklist](writing-for-ai-checklist.md)
+10. [Embedding AI Context in Web Pages](./embedding-ai-context-in-webpages.md)
