@@ -51,6 +51,8 @@ If you’re looking to adopt this doctrine in your organization or project, here
 
 By following this guide, an organization can gradually transition to AI-first documentation without a huge one-time overhaul. It can start small (maybe just one product’s docs as a pilot) and expand. The move to AI-native documentation is an opportunity to elevate the quality and accessibility of our technical content. It demands rigor and foresight in how we write, but it promises a world where users (or engineers or any audience) can get the exact information they need from our documentation instantly and accurately, anytime, anywhere, through the AI interlocutor of their choice. By adopting the principles, practices, and checklists outlined in this doctrine, we can ensure our documentation isn’t just static text on a page, but a living, queryable, intelligent resource that works in tandem with the powerful AI tools of tomorrow.
 
+<img src="doctrine-diagram.drawio.svg" alt="Doctrine Architecture ">
+
 ## Dig in
 
 1. [Introduction](introduction.md)

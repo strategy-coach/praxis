@@ -36,7 +36,7 @@ This strategy is not about AI model tuning — it’s about the foundation every
 9. [Chat UI Construction](chat-ui-construction.md)
 10. [surveilr as Ingestion layer](surveilr-as-ingestion-layer.md)
 11. [surveilr as SQL-Native Grounding Infrastructure](surveilr-sql-native-grounding.md)
-12. [Backend Design with MCP and AnythingLLM](backend-design-mcp-anythingllm.md)
+12. [Backend Design with MCP and AnythingLLM](backend-design-with-mcp-and-anythingllm.md)
 13. [Roles in AI-Native Engineering](roles-ai-native-engineering.md)
 14. [AI Gateway](ai-gateway.md)
 15. [Text to SQL](text-to-sql.md)
