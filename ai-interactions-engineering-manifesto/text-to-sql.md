@@ -199,7 +199,18 @@ Fine-tuning moves policy enforcement from the prompt into the model’s instinct
 
 ## The Ultimate Trust Model: Custom Local LLMs
 
-The highest level of trust comes when the model itself is fully local, trained exclusively on your own schema, queries, and policies, with no access to external, ungrounded facts.
+The highest level of trust comes when the model itself is fully local, trained exclusively on your own schema, queries, and policies, with no access to external, ungrounded facts. In regulated, multi-tenant environments, traditional general-purpose LLMs (e.g., OpenAI, Claude) are inadequate for the highest trust scenarios. Even with careful prompting and schema-aware RAG, horizontal models:
+
+* Cannot guarantee exclusion of ungrounded, external knowledge.
+* Are dependent on vendor-controlled infrastructure and training data.
+* Lack built-in awareness of tenant-level access controls and business rules.
+
+The ultimate trust model is therefore built on:
+
+1. Local-only model hosting (air-gapped or network-restricted).
+2. Fine-tuning with in-domain schema, queries, and policies.
+3. Continuous retraining based on approved queries and outcomes.
+4. Integrated provenance logging for every interaction.
 
 Advantages:
 
@@ -216,6 +227,285 @@ In this model:
 3. SQL Queries are generated within your policy constraints.
 4. Provenance Records are automatically stored.
 5. The model is continuously retrained or fine-tuned with approved new queries for ongoing alignment.
+
+### Custom Local LLMs Reference Architecture
+
+A reference architecture and implementation approach for building fully local, schema-aligned, policy-aware Text-to-SQL models that operate without access to any external, ungrounded facts is an important part of any trustworthy AI initiative. The goal is to achieve maximum trust in AI-generated database interactions by combining fine-tuning on domain-specific data, strict security controls, continuous training, and provenance tracking.
+
+Key Components:
+
+* Schema Store: Machine-readable representation of DB schema, updated automatically.
+* Training Corpus: Curated set of historical queries + policy annotations.
+* Fine-Tuned Local LLM: Hosted on local inference infrastructure (GPU server or on-prem AI appliance).
+* RAG Layer (optional): Retrieves relevant schema fragments for large or evolving databases.
+* Provenance Engine: Logs prompt, schema context, generated SQL, execution plan, and result.
+* Continuous Trainer: Periodically fine-tunes the model with new approved queries.
+
+High-Level Data Flow:
+
+```
+User → Query Parser → (Optional RAG) → Local LLM → SQL Validator → Execution Engine
+                                                           ↓
+                                                    Provenance Store
+```
+
+### Model Preparation
+
+#### Data Collection
+
+* **Schema Export**:
+
+  ```sql
+  SELECT table_name, column_name, data_type
+  FROM information_schema.columns
+  WHERE table_schema = 'public';
+  ```
+* **Historical Queries**:
+
+  * Extract from DB query logs.
+  * Filter by successful execution and policy compliance.
+
+#### Data Curation
+
+* Annotate queries with:
+
+  * **Tenant scope** (e.g., `tenant_id = :currentTenant`).
+  * **Role permissions** (e.g., `role:admin`, `role:analyst`).
+  * **Business rule compliance**.
+
+* Remove:
+
+  * Unbounded destructive queries.
+  * Non-representative or experimental SQL.
+
+#### Fine-Tuning Dataset Format
+
+```json
+{"prompt": "Generate SQL for: Top 10 customers by revenue in 2024\nSchema: <...>", "completion": " SELECT name, SUM(revenue) ..."}
+{"prompt": "Generate SQL for: List active projects for tenant_id=42\nSchema: <...>", "completion": " SELECT project_name ... WHERE tenant_id = 42;"}
+```
+
+### Training and Hosting
+
+#### Model Selection
+
+* Open-source base models with permissive licenses (e.g., CodeLLaMA, MPT, Qwen2.5-Coder).
+* Parameter size tuned to local hardware and latency requirements.
+
+#### Fine-Tuning Pipeline (Pseudocode)
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments
+
+# Load base model
+model = AutoModelForCausalLM.from_pretrained("Qwen2.5-Coder")
+tokenizer = AutoTokenizer.from_pretrained("Qwen2.5-Coder")
+
+# Load and tokenize dataset
+dataset = load_jsonl("fine_tune_dataset.jsonl")
+tokenized = dataset.map(lambda ex: tokenizer(ex["prompt"] + ex["completion"]), batched=True)
+
+# Training arguments
+args = TrainingArguments(
+    output_dir="./local_sql_model",
+    per_device_train_batch_size=2,
+    learning_rate=5e-5,
+    num_train_epochs=3,
+    save_steps=1000,
+    fp16=True
+)
+
+# Train
+trainer = Trainer(model=model, args=args, train_dataset=tokenized)
+trainer.train()
+
+# Save locally
+model.save_pretrained("./local_sql_model")
+tokenizer.save_pretrained("./local_sql_model")
+```
+
+### Inference Pipeline
+
+#### Core Inference (Pseudocode in TypeScript/Deno)
+
+```ts
+import { generateSQL } from "./local-inference.ts";
+import { validateSQL } from "./sql-validator.ts";
+import { writeProvenance } from "./provenance.ts";
+
+const userQuery = "Show top 5 products by revenue for current tenant";
+
+const sql = await generateSQL(userQuery, "./schemas/postgres-schema.json");
+
+if (!validateSQL(sql)) {
+  throw new Error("Policy violation in generated SQL");
+}
+
+const result = await executeSQL(sql);
+await writeProvenance(userQuery, sql, result);
+
+console.log("Query result:", result);
+```
+
+#### Local Inference
+
+```ts
+// local-inference.ts
+export async function generateSQL(userQuery: string, schemaPath: string) {
+  const schema = await Deno.readTextFile(schemaPath);
+  const prompt = `Generate a SQL query for the following request, using only this schema:\n${schema}\n\nRequest: ${userQuery}`;
+  // Local model inference API call
+  const resp = await fetch("http://localhost:8000/generate", {
+    method: "POST",
+    body: JSON.stringify({ prompt }),
+  }).then(res => res.json());
+  return resp.output;
+}
+```
+
+### Continuous Training
+
+#### Process
+
+1. Monitor provenance logs.
+2. Review and approve high-value queries.
+3. Append approved queries to training dataset.
+4. Retrain or LoRA-adapt model periodically.
+
+#### Automation Pseudocode
+
+```python
+import json, shutil
+
+def append_to_dataset(provenance_dir, dataset_file):
+    for file in os.listdir(provenance_dir):
+        record = json.load(open(file))
+        if record["approved"]:
+            with open(dataset_file, "a") as ds:
+                json.dump({
+                    "prompt": record["userQuery"] + "\nSchema: " + json.dumps(record["schemaContext"]),
+                    "completion": " " + record["generatedSQL"]
+                }, ds)
+                ds.write("\n")
+
+append_to_dataset("./provenance", "fine_tune_dataset.jsonl")
+```
+
+### Security Considerations
+
+* Run inference in an **air-gapped network** for sensitive data.
+* Apply **role-based query filters** pre- and post-generation.
+* Enforce **schema whitelists** to prevent cross-tenant leakage.
+* Log all inputs/outputs for audit readiness.
+
+Here’s the new stand-alone paper as requested — **"Custom Text-to-SQL: Combining AnythingLLM with Open Source Tools like Vanna or PremSQL"** — designed to extend *The Ultimate Trust Model: Custom Local LLMs* into a concrete experimental reference architecture.
+
+### Experimentation-ready Architecture: Combining AnythingLLM with Open Source Tools like Vanna or PremSQL
+
+Here is a practical, experimental reference architecture for building custom, schema-aware, policy-aligned Text-to-SQL systems by combining the orchestration and multi-model management capabilities of AnythingLLM with open source Text-to-SQL engines such as Vanna and PremSQL.
+
+![Anything LLM Experimental Architecture](./text-to-sql-experiment-anythingllm.png)
+
+| Component       | Role in the Architecture                                                                                                                      |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **AnythingLLM** | Multi-model orchestrator, RAG engine, knowledgebase builder, API/UI gateway. Manages prompt chaining, schema retrieval, and user interaction. |
+| **Vanna**       | Python-based, RAG-driven Text-to-SQL generation tool with schema grounding. Great for retrieval-driven SQL creation and extensibility.        |
+| **PremSQL**     | Fully local, privacy-first Text-to-SQL library, ideal for air-gapped deployments or strict compliance environments.                           |
+| **Local LLM**   | Fine-tuned model trained on schema, historical queries, and policies — no external, ungrounded facts.                                         |
+
+```
+User Query
+   ↓
+AnythingLLM Orchestrator
+   ├── Schema Retriever (local DB or vector store)
+   ├── Policy Validator
+   ├── Route to Engine
+   │     ├── Vanna (RAG-driven SQL generation)
+   │     └── PremSQL (policy-locked SQL generation)
+   └── Local LLM Inference Endpoint
+         ↓
+SQL Validator → Database Execution → Provenance Logger
+```
+
+#### AnythingLLM as the Orchestration Layer
+
+* Hosts **multiple local LLMs** (e.g., CodeLLaMA, Qwen2.5-Coder, MPT) for fallback or A/B testing.
+* Manages **context injection** from schema vector embeddings.
+* Provides **prompt templates** enforcing schema-only rules.
+* Handles **multi-tenant routing** — injecting tenant IDs, role constraints into prompts.
+
+#### Vanna Integration
+
+* Runs as a Python service connected to AnythingLLM.
+* Uses RAG with embeddings of the schema and optionally query history.
+* Accepts the user request and returns a candidate SQL statement.
+* Ideal for exploratory queries and schema-aware joins.
+
+#### PremSQL Integration
+
+* Runs entirely locally without internet.
+* Uses explicit schema mappings and controlled query templates.
+* Ideal for **locked-down, policy-critical** workloads (e.g., regulated production queries).
+
+#### Local LLM Fine-Tuning
+
+* Fine-tuned using the dataset preparation flow from *The Ultimate Trust Model*.
+* Hosted in AnythingLLM’s **local model registry**.
+* Continuously trained from approved provenance logs.
+
+#### Experimental Deployment Pattern
+
+* **AnythingLLM** running in Docker on a secured local host.
+* **Vanna** Python service exposed via REST API on the same network.
+* **PremSQL** running as a local library in AnythingLLM’s plugin container.
+* **PostgreSQL** or **MySQL** test instance with anonymized production schema.
+* **Vector store** (Weaviate, pgvector, or Milvus) for schema embeddings.
+
+1. Schema Ingestion. Export DB schema → embed with AnythingLLM → store in vector DB.
+
+2. Query Handling
+
+   * User sends a natural language query to AnythingLLM.
+   * AnythingLLM retrieves relevant schema context.
+   * Policy validator injects tenant/role constraints.
+   * AnythingLLM routes request:
+
+     * **Vanna path**: retrieval-driven SQL generation.
+     * **PremSQL path**: template-driven, locked-down SQL generation.
+
+3. Validation: SQL passes through syntax check, policy check, and optional execution in a staging environment.
+
+4. Execution & Provenance: Results returned to user + full record (query, schema subset, model used, execution plan, result) stored as **Markdown with frontmatter**.
+
+5. Continuous Learning: Approved provenance logs appended to training dataset → periodic fine-tuning of local LLM.
+
+#### Pseudocode for Orchestrator Routing
+
+```python
+def handle_user_query(query, engine="auto"):
+    schema_context = retrieve_schema_context(query)
+    policy_enforced_prompt = apply_policy_context(query, schema_context)
+
+    if engine == "vanna":
+        sql = vanna_generate_sql(policy_enforced_prompt)
+    elif engine == "premsql":
+        sql = premsql_generate_sql(policy_enforced_prompt)
+    else:
+        # Auto-select engine
+        if is_policy_critical(query):
+            sql = premsql_generate_sql(policy_enforced_prompt)
+        else:
+            sql = vanna_generate_sql(policy_enforced_prompt)
+
+    if not validate_sql(sql):
+        raise Exception("Invalid or unsafe SQL generated")
+
+    result = execute_sql(sql)
+    log_provenance(query, schema_context, sql, result, engine)
+    return result
+```
+
+By combining AnythingLLM’s orchestration with Vanna and PremSQL’s specialized Text-to-SQL capabilities — and layering in local, fine-tuned models — this architecture provides a real, testable implementation path for *The Ultimate Trust Model: Custom Local LLMs*. It bridges the gap between high-level pseudocode and operational reality, creating a system that can be proven, audited, and evolved toward the highest possible trust in AI-driven database interactions.
 
 ## Trust Alignment: A Unified Framework
 
@@ -239,5 +529,6 @@ Strategic Impact:
 * Reduced operational risk in multi-tenant, regulated environments.
 * Scalable governance without sacrificing user experience.
 
-In high-stakes environments, trust is engineered — not assumed.
-By combining provenance tracking, schema-focused retrieval, fine-tuned alignment, and fully local models, you transform Text-to-SQL from a convenience feature into a cornerstone of enterprise-grade trustworthy AI.
+In high-stakes environments, trust is engineered — not assumed. By combining provenance tracking, schema-focused retrieval, fine-tuned alignment, and fully local models, you transform Text-to-SQL from a convenience feature into a cornerstone of enterprise-grade trustworthy AI.
+
+A custom, fully local Text-to-SQL LLM fine-tuned on your schema and historical queries, continuously trained on approved results, and isolated from external ungrounded facts delivers the highest achievable trust in AI-driven database access. This model transforms SQL generation from a generic capability into a governed, policy-aligned, explainable system suitable for mission-critical, regulated environments.
