@@ -439,7 +439,7 @@ What implementation must include
 * Audit trails: who requested, who confirmed, what changed, before/after snapshots.
 * Rollout: read-only → low-risk creates (leads, notes) → updates/deletes behind stricter gates.
 
-### F. Systems of Analytics Assistant
+### Systems of Analytics Assistant
 
 Experience goals
 
@@ -530,3 +530,4 @@ B2B CRUD/Analytics
 * Analytics: governed schema; transparency of queries; cost guards; freshness notices.
 * Observability: tracing, metrics, redacted logs, evaluation harness, A/B testing.
 * Privacy/Compliance: data minimization, retention policies, regional pinning, DSR tooling, model data controls.
+
