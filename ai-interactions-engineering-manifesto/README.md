@@ -33,7 +33,7 @@ This strategy is not about AI model tuning — it’s about the foundation every
 6. [Context Engineering and AI Prompting](context-engineering-ai-prompting.md)
 7. [Vector Database and Enterprise RAG Strategy](vector-db-enterprise-rag-strategy.md)
 8. [Multi-Layered Retrieval for Verifiable AI](multi-layered-retrieval-verifiable-ai.md)
-9. [Chat UI Construction](chat-ui-construction.md)
+9. [Conversational UX (Chat UIs)](conversational-ux.md)
 10. [surveilr as Ingestion layer](surveilr-as-ingestion-layer.md)
 11. [surveilr as SQL-Native Grounding Infrastructure](surveilr-sql-native-grounding.md)
 12. [Backend Design with MCP and AnythingLLM](backend-design-with-mcp-and-anythingllm.md)
