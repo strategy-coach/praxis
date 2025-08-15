@@ -9,6 +9,7 @@ LLMs perform more accurately when they truly understand the database schema—it
 > Don’t just lean on generic structured prompting. Instead, wrap carefully designed prompts into a text‑to‑SQL layer, anchoring in schema and using robust frameworks to produce trustworthy outputs.
 
 - [ ] TODO: Review and integrate learnings from [Enhancing Text-to-SQL with a Fine-Tuned 7B LLM for Database Interactions](https://yia333.medium.com/enhancing-text-to-sql-with-a-fine-tuned-7b-llm-for-database-interactions-fa754dc2e992)
+- [ ] TODO: Study [LLM graph-RAG SQL generator for large databases with poor documentation](https://github.com/yaacoo/graphRagSqlator) and find comparables for generating database documentation
 
 ![Trust Levels in Text-to-SQL](./text-to-sql-trust-levels.png)
 
@@ -534,4 +535,5 @@ Strategic Impact:
 In high-stakes environments, trust is engineered — not assumed. By combining provenance tracking, schema-focused retrieval, fine-tuned alignment, and fully local models, you transform Text-to-SQL from a convenience feature into a cornerstone of enterprise-grade trustworthy AI.
 
 A custom, fully local Text-to-SQL LLM fine-tuned on your schema and historical queries, continuously trained on approved results, and isolated from external ungrounded facts delivers the highest achievable trust in AI-driven database access. This model transforms SQL generation from a generic capability into a governed, policy-aligned, explainable system suitable for mission-critical, regulated environments.
+
 
