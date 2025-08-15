@@ -15,6 +15,8 @@ But designing these interactions is not just about embedding a chat bubble or co
 
 When integrating NLIs into external, customer-facing websites, the goals differ from authenticated portals. Visitors are often anonymous, seeking information about products, services, or pricing. The chat assistant must act as a sales and marketing aide, not a support representative.
 
+👉 [This document](../ai-native-technical-communications-doctrine/embedding-ai-context-in-webpages.md) suggests ways to setup context for public web pages and is worth reading.
+
 1. Context is everything: An NLI on a marketing site must be aware of the page the visitor is viewing. For example, if the visitor is reading about “pricing,” the assistant should prioritize pricing-related responses.
 
 2. Balance automation with transparency: Users should know they are interacting with an AI assistant, not a human. Transparency prevents disappointment and builds trust.
