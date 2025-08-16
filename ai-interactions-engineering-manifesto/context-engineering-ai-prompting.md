@@ -16,6 +16,8 @@ Start by identifying likely user queries and required information using the expe
 | Anthropic | `claude-3-haiku`     | 200k tokens    | Fast, cheap, narrow-scope prompt scenarios        | Great for chat and light document interactions                    |
 | Anthropic | `claude-2.1`         | 200k tokens    | Legacy support for long context                   | Older, less performant than Claude 3 models                       |
 
+👉 Tokens can get expensive, be sure to read [Prompt Caching: Don’t Pay for the Same Prompt Again and Again](caching-prompts.md)
+
 Essentially, treat the Markdown files as if they could be concatenated into the prompt (within token limits). Of course, we cannot always stuff entire documents if they are very large – but this exercise helps determine *how much context is actually needed*. For example, if users often ask about “clause 9.2” of a policy, we might prompt the model with: *system message:* “You are an AI assistant. Answer questions using the provided policy document,” and *user message:* “Clause 9.2 question” along with the text of clause 9.2 from the Markdown. This manual prompting test will show what kind of answers the model gives, and whether it uses the context properly.
 
 Design context bundles for each type of query. A context bundle is a collection of document excerpts or facts likely needed to answer a question. For instance, for an “ISO 27001 Q\&A” bundle, it might include the relevant clauses’ text. For a “Customer Support Handbook Q\&A” bundle, it might include the introduction plus the section on the particular topic asked. Initially, do this without any embedding search – simply manually choose the sections (as per UAT scenarios). Through these simulations, you’ll learn how the model behaves: Does it quote verbatim? Does it need additional coaxing to cite sources? Does irrelevant text confuse it? Use these insights to refine the prompt templates and guidelines. Perhaps you discover the model sometimes ignores the provided text and answers from general knowledge – then you know you’ll need to emphasize in the prompt: *“Use only the provided document to answer.”* Or you find that including too much text causes it to get “lost in the middle” – then you know your context windows need to be tighter or chunked differently.
@@ -83,3 +85,5 @@ In many AI systems, prompts are fragile art — crafted through trial-and-error 
 * Explain their rationale
 
 This transforms prompt engineering from a craft into a discipline. We move from designing one-off prompts to managing prompt programs, powered by content-aware SQL logic in `surveilr` SQLite RSSDs.
+
+👉 Tokens can get expensive, be sure to read [Prompt Caching: Don’t Pay for the Same Prompt Again and Again](caching-prompts.md)
