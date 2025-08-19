@@ -4,35 +4,16 @@ AI makes software faster to write, not faster to understand. Debt grows when the
 
 ## Why AI accelerates technical debt
 
-1. Throughput > comprehension
-   Models generate large diffs quickly. Review bandwidth and architectural memory don’t scale at the same pace, so implicit decisions leak into production.
-
-2. Prompt drift
-   Slight wording changes or tool availability shifts alter outputs. Without prompt pinning and provenance, the same “instruction” yields divergent codebases over time.
-
-3. Pattern oscillation
-   Models flip between idioms (framework choice, error handling style, naming) across files. Inconsistency is a multiplier on maintenance cost.
-
-4. Undeclared dependency sprawl
-   AI tends to “reach for” libraries. Each new import adds surface area, transitive risk, and patch cadence the team must absorb.
-
-5. Hidden coupling via context windows
-   The model infers connections from transient context rather than explicit interfaces, producing modules that work only under the original prompt’s assumptions.
-
-6. Non‑determinism in scaffolds
-   Regenerating “the same” function later produces variants that subtly break callers, especially when tests are missing or brittle.
-
-7. Documentation latency
-   AI can write docs, but nobody prompts for it by default. Undocumented behavior is indistinguishable from bugs.
-
-8. Over‑fitted happy paths
-   Generated code often mirrors example inputs. Edge cases and failure modes are under‑represented unless explicitly demanded.
-
-9. AI supply chain risk
-   Different models, versions, or toolchains produce different semantics. If you don’t capture “who/what generated this,” you can’t reproduce fixes.
-
-10. “Free code” bias
-    When code is cheap, deletion discipline falls. Accretive features outrun consolidation, and entropy wins.
+1. Throughput > comprehension. Models generate large diffs quickly. Review bandwidth and architectural memory don’t scale at the same pace, so implicit decisions leak into production.
+2. Prompt drift. Slight wording changes or tool availability shifts alter outputs. Without prompt pinning and provenance, the same “instruction” yields divergent codebases over time.
+3. Pattern oscillation. Models flip between idioms (framework choice, error handling style, naming) across files. Inconsistency is a multiplier on maintenance cost.
+4. Undeclared dependency sprawl. AI tends to “reach for” libraries. Each new import adds surface area, transitive risk, and patch cadence the team must absorb.
+5. Hidden coupling via context windows. The model infers connections from transient context rather than explicit interfaces, producing modules that work only under the original prompt’s assumptions.
+6. Non‑determinism in scaffolds. Regenerating “the same” function later produces variants that subtly break callers, especially when tests are missing or brittle.
+7. Documentation latency. AI can write docs, but nobody prompts for it by default. Undocumented behavior is indistinguishable from bugs.
+8. Over‑fitted happy paths. Generated code often mirrors example inputs. Edge cases and failure modes are under‑represented unless explicitly demanded.
+9. AI supply chain risk. Different models, versions, or toolchains produce different semantics. If you don’t capture “who/what generated this,” you can’t reproduce fixes.
+10. “Free code” bias. When code is cheap, deletion discipline falls. Accretive features outrun consolidation, and entropy wins.
 
 ## First line of defense: tests as executable contracts
 
@@ -97,60 +78,32 @@ Only after the failing test, submit the smallest code change to pass the test.
 
 ## Under‑the‑radar tactics that cut AI debt
 
-1. Prompt lockfiles
-   Check in `PROMPT.lock` next to generated modules capturing the exact instruction, tool list, and model/version. Treat it like `package-lock.json`.
+1. Prompt lockfiles. Check in `PROMPT.lock` next to generated modules capturing the exact instruction, tool list, and model/version. Treat it like `package-lock.json`.
+2. TTL for generated code. Every AI file gets a `TTL:` header (e.g., 90 days). A weekly job opens an issue when TTL expires: “Revalidate or delete.” Debt doesn’t get to hide.
+3. Code rental vs. code ownership. Label directories as RENTAL (ephemeral scaffolds behind flags) vs OWNED (core domain). RENTAL code can be deleted without ceremony.
+4. Quarantine branches. All net-new AI components land in `ai/quarantine/*` with strict flags and no external dependency additions until passing a 2‑week burn‑in.
+5. Debt budget per PR. CI computes a debt delta (complexity, dependencies, public API surface). PRs must fit a sprint‑level budget; overshoot requires explicit waiver.
+6. Two‑model verification. Generate with Model A, independently review with Model B instructed to find divergence, dead code, and hidden coupling. Resolve before merge.
+7. Semantic diff checks. Run “spec diffs” that compare callable signatures, exceptions, and invariants between HEAD and PR. Block merges that change contracts without version notes.
+8. Deletion‑first Fridays. Reserve time for removing RENTAL code, unused helpers, and dark‑launched flags. AI makes code cheap; your edge is making deletion cheap.
+9. Interface snapshots. Store machine‑readable “API snapshots” per release (JSON of types, routes, errors). Tests assert snapshot stability across refactors.
+10. AI PR reviewer with maintainability persona. A dedicated reviewer prompt only checks: naming consistency, module boundaries, and dependency rules—not correctness. It catches entropy.
+11. Provenance headers. At file top:
 
-2. TTL for generated code
-   Every AI file gets a `TTL:` header (e.g., 90 days). A weekly job opens an issue when TTL expires: “Revalidate or delete.” Debt doesn’t get to hide.
-
-3. Code rental vs. code ownership
-   Label directories as RENTAL (ephemeral scaffolds behind flags) vs OWNED (core domain). RENTAL code can be deleted without ceremony.
-
-4. Quarantine branches
-   All net-new AI components land in `ai/quarantine/*` with strict flags and no external dependency additions until passing a 2‑week burn‑in.
-
-5. Debt budget per PR
-   CI computes a debt delta (complexity, dependencies, public API surface). PRs must fit a sprint‑level budget; overshoot requires explicit waiver.
-
-6. Two‑model verification
-   Generate with Model A, independently review with Model B instructed to find divergence, dead code, and hidden coupling. Resolve before merge.
-
-7. Semantic diff checks
-   Run “spec diffs” that compare callable signatures, exceptions, and invariants between HEAD and PR. Block merges that change contracts without version notes.
-
-8. Deletion‑first Fridays
-   Reserve time for removing RENTAL code, unused helpers, and dark‑launched flags. AI makes code cheap; your edge is making deletion cheap.
-
-9. Interface snapshots
-   Store machine‑readable “API snapshots” per release (JSON of types, routes, errors). Tests assert snapshot stability across refactors.
-
-10. AI PR reviewer with maintainability persona
-    A dedicated reviewer prompt only checks: naming consistency, module boundaries, and dependency rules—not correctness. It catches entropy.
-
-11. Provenance headers
-    At file top:
-
-```
-// AI-Origin: ChatGPT-5-Thinking
-// PromptFingerprint: sha256:...
-// Date: 2025-08-19
-// Owner: team-data-platform
-// TTL: 90d
-```
+   ```
+   // AI-Origin: ChatGPT-5-Thinking
+   // PromptFingerprint: sha256:...
+   // Date: 2025-08-19
+   // Owner: team-data-platform
+   // TTL: 90d
+   ```
 
 Reproducibility is a debt reducer.
 
-12. Feature flags as debt valves
-    All new features ship behind typed flags with default OFF. Flags auto-expire; CI fails if expired flags remain.
-
-13. “No new nouns” rule
-    AI often invents new domain terms. Require mapping to the existing ubiquitous language; otherwise, the term is rejected or aliased.
-
-14. Refactor bounties
-    Incentivize deleting 500 LOC by paying the same internal “points” as adding 1,500 LOC. Reward reduction, not accumulation.
-
-15. Scaffold generators with constraints
-    Provide house templates that embed the maintainability prompts and test harnesses so engineers don’t need to remember them.
+12. Feature flags as debt valves. All new features ship behind typed flags with default OFF. Flags auto-expire; CI fails if expired flags remain.
+13. “No new nouns” rule. AI often invents new domain terms. Require mapping to the existing ubiquitous language; otherwise, the term is rejected or aliased.
+14. Refactor bounties. Incentivize deleting 500 LOC by paying the same internal “points” as adding 1,500 LOC. Reward reduction, not accumulation.
+15. Scaffold generators with constraints. Provide house templates that embed the maintainability prompts and test harnesses so engineers don’t need to remember them.
 
 ## Operating model (Leadership Coaching Required)
 
