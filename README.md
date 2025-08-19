@@ -10,7 +10,7 @@ The word **"praxis"** means the process of using a theory or lesson in a practic
 - [Trustable AI Interactions Engineering Manifesto](./ai-interactions-engineering-manifesto#readme)
 - [AI-Native Tech Stack and Engineering Philosophy for B2B Web Apps Without Frameworks](./ai-native-software-engineering#readme)
 - [AI-Native Enterprise Software Ideation ("Lovable" for B2B)](./ai-native-software-engineering/ai-native-enterprise-software-ideation#readme)
-- [Doctrine: Wrangle AI-Accelerated Tech Debt using Testing First Principles](./ai-accelerated-tech-debt)
+- [Doctrine: Wrangle AI-Accelerated Tech Debt using Testing First Principles](./ai-native-software-engineering/ai-accelerated-tech-debt)
 - [Why Technical Debt Grows Faster With AI‑Generated Code (and how to beat it)](ai-native-software-engineering/ai-accelerated-tech-debt/why-tech-debt-grows-faster-with-ai.md)
 
 ## Educational Materials

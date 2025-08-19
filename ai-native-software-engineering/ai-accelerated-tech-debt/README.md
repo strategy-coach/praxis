@@ -1,5 +1,7 @@
 # Doctrine: Wrangle AI-Accelerated Tech Debt using Testing First Principles
 
+> by Shahid N. Shah
+
 AI makes software faster to write, not faster to understand. Debt grows when the rate of code creation exceeds the rate of shared comprehension, tests, and runtime verification. AI is a force multiplier on both sides of that equation. Treat AI like an ultra‑productive junior team that never sleeps: it will do exactly what you asked—plus a few things you didn’t notice you asked.
 
 > Read more about [Why AI accelerates technical debt](why-tech-debt-grows-faster-with-ai.md).
