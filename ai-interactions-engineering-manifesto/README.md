@@ -34,12 +34,13 @@ This strategy is not about AI model tuning — it’s about the foundation every
 7. [Vector Database and Enterprise RAG Strategy](vector-db-enterprise-rag-strategy.md)
 8. [Multi-Layered Retrieval for Verifiable AI](multi-layered-retrieval-verifiable-ai.md)
 9. [Conversational UX (Chat UIs)](conversational-ux.md)
-10. [surveilr as Ingestion layer](surveilr-as-ingestion-layer.md)
-11. [surveilr as SQL-Native Grounding Infrastructure](surveilr-sql-native-grounding.md)
-12. [Backend Design with MCP and AnythingLLM](backend-design-with-mcp-and-anythingllm.md)
-13. [Roles in AI-Native Engineering](roles-ai-native-engineering.md)
-14. [AI Gateway](ai-gateway.md)
-15. [Text to SQL](text-to-sql.md)
+10. [Feedback Loops Improve AI Interactions over time](feedback-loops.md)
+11. [surveilr as Ingestion layer](surveilr-as-ingestion-layer.md)
+12. [surveilr as SQL-Native Grounding Infrastructure](surveilr-sql-native-grounding.md)
+13. [Backend Design with MCP and AnythingLLM](backend-design-with-mcp-and-anythingllm.md)
+14. [Roles in AI-Native Engineering](roles-ai-native-engineering.md)
+15. [AI Gateway](ai-gateway.md)
+16. [Text to SQL](text-to-sql.md)
 
 In this project, we are not inventing a new AI algorithm or platform from scratch – we are assembling best-in-class tools and practices into a cohesive, trustworthy system. The emphasis on expectations, structured data, and verification is what will set our solution apart and make it enterprise-grade. Always remember: start with understanding the user’s needs (the why), prepare the knowledge and context (the what), and only then implement the technical solution (the how). This ensures we solve the *right* problem the *right* way.
 
@@ -50,3 +51,4 @@ Moving forward, as we implement this plan, keep communication open. Regularly re
 Finally, remember that simplicity is not our enemy; it’s our goal. A simpler system is easier to understand and trust. Every time we consider adding a complex component, we ask: is there a simpler way that achieves the goal? This mindset will serve us well, especially in maintenance and scaling phases. By following this comprehensive strategy and adhering to these principles, we will deliver an AI Q\&A solution that is not only effective but also transparent and dependable.
 
 Let’s build this step by step, always keeping in mind the end-users – busy B2B professionals who just want correct, quick answers with evidence. By making things understandable, maintainable, and verifiable at each stage, we ensure that the final product meets their needs and earns their confidence. We have the plan and the tools; now it’s about disciplined execution and continuous learning. Let’s get to work on creating an AI assistant the users will love and trust, using the roadmap we’ve laid out.
+
