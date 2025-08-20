@@ -17,6 +17,8 @@ surveilr is the information backbone. It captures, stores, and makes queryable t
 * Deletion velocity: surveilr tracks removed LOC, expired flags, and TTL breaches. Teams get credit for deletions, not just additions.
 * Audit trail: Every AI interaction (prompt + output) is logged and queryable, enabling compliance and reproducibility.
 
+<img src="surveilr-ai-code-management-diagram.svg" alt="surveilr- Architecture">
+
 ## Qualityfolio’s Role: Test Management as Executable Contracts
 
 Qualityfolio is the test truth system. It manages and verifies that every piece of code—AI-generated or human-authored—carries test evidence.
@@ -29,6 +31,8 @@ Qualityfolio is the test truth system. It manages and verifies that every piece 
 * Property/fuzz test templates: Engineers can invoke AI with Qualityfolio templates that force the generation of property-based and fuzz tests, not just happy-path unit tests.
 * Flake tracking: Qualityfolio records flaky test runs and feeds back into surveilr telemetry, closing the loop on reliability.
 * Evidence repository: Executed tests and results are stored, allowing auditors or future maintainers to prove behavior equivalence after refactors.
+
+<img src="qualityfolio-architecture-diagram.svg" alt="qualityfolio- Architecture">
 
 ## Integration Model: surveilr + Qualityfolio
 
