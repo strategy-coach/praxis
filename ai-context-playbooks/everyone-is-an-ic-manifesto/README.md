@@ -48,7 +48,7 @@ Generative AI demands a new mindset. Creativity is the bottleneck now, not code.
 
 ## Project Managers & QA: Simulate UAT with Prompts
 
-> If this piqued your interest, read more at [PMs & QA Shift Left on AI Projects](pm-qa-shift-left-ai.md) and [PMs & QA Shift Left on Legacy Projects](pm-qa-shift-left-legacy.md).
+> If this piqued your interest, read more at [PMs & QA Shift Left on AI Projects](pm-qa-shift-left-ai.md) and [PMs & QA Shift Left on Legacy Projects](pm-qa-shift-left-legacy.md). Plus we've got a useful [Checklist for PMs and QAs to help Shift Left](pm-qa-shift-left-checklist.md)
 
 * Old world: PMs and QA leads coordinate via meetings and static documents. They collect requirements, write project plans, and plan user acceptance testing (UAT) with checklists. Test plans and bug reports are often manually written, and developers question managers endlessly to clarify acceptance criteria.
 * New world: PMs and QA leaders transform into AI-driven test planners and coordinators. Instead of waiting for dev to propose code, PMs use AI to simulate the final product and its tests. They write prompts to create virtual UAT plans, acceptance criteria, and even mock user dialogues. For instance, given a product feature, a QA lead might ask an AI: “Act as an end user and test this feature: I click ‘Order Now’ on the app and enter payment details. Write down what should happen at each step and what can go wrong.” The AI outputs a detailed UAT scenario. PMs iterate on prompts until the test cases cover all user stories. These AI-generated test plans become living documents, automatically updated as requirements change.
