@@ -234,3 +234,5 @@ We don’t just ship models.
 We ship closed feedback loops that make trust a continuous property — not a one-time assertion.
 
 Let me know if you'd like this inserted directly into the full engineering report.
+
+Effective feedback loops require a deep understanding of context and prompts. For a detailed explanation of how context engineering is reshaping AI work, refer to the [Everyone Is an Individual Contributor Manifesto](../ai-context-playbooks/everyone-is-an-ic-manifesto/README.md).

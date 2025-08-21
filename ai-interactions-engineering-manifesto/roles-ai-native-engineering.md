@@ -84,3 +84,5 @@ This statement captures the mindset shift we want in the team: our primary job i
 * [ ] Maintain Clean UI Code: Even though we rely on a kit, our own UI code (pages, integration logic) should be clean and commented. Follow the project conventions (if using Next.js, follow its file structuring, etc.). This makes it easier for new team members to jump in, especially since we might scale the team to maintain the UI separately.
 
 By rotating through or combining these roles, our small team (3-5 people) covers all necessary skills to deliver the product. One person might be primarily backend (MCP, integration) and another frontend, but everyone should understand the whole picture. The list above serves as a checklist for each area of responsibility – it can be used to onboard new team members or to self-assess if we’ve covered all bases.
+
+As AI-native systems require precision in prompting and context design, refer to the [Everyone Is an Individual Contributor Manifesto](../ai-context-playbooks/everyone-is-an-ic-manifesto/README.md) for key principles on context engineering and how every role becomes an IC in the AI-native world.
