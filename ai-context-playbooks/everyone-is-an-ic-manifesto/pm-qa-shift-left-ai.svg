@@ -1,0 +1,189 @@
+<svg width="1200" height="920" viewBox="0 0 1200 920" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shift‑Left for AI Apps: Data Integration, Cleansing, and Chatbots">
+  <defs>
+    <linearGradient id="oldGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7f7f7"></stop>
+      <stop offset="100%" stop-color="#efefef"></stop>
+    </linearGradient>
+    <linearGradient id="newGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eef7ff"></stop>
+      <stop offset="100%" stop-color="#e6f1ff"></stop>
+    </linearGradient>
+    <marker id="arrowOld" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#777"></path>
+    </marker>
+    <marker id="arrowNew" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f6feb"></path>
+    </marker>
+    <style>
+      .title { font: 700 22px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#222; }
+      .swim { font: 600 13px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#555; }
+      .step { fill:#fff; stroke:#c7c7c7; stroke-width:1.2; }
+      .stepNew { stroke:#9ec5fe; }
+      .label { font:600 14px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#222; }
+      .small { font:12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#444; }
+      .legend { font:12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#333; }
+      .note { font:12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#555; }
+      .box { fill:#fff; stroke:#d9e8ff; }
+      .kpi { font:600 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#0b5; }
+      .kpiOld { fill:#b30; }
+    </style>
+  </defs>
+
+  <!-- Headers -->
+  <text x="120" y="36" class="title">Old AI delivery: data is an afterthought, bots wired late</text>
+  <text x="710" y="36" class="title">Shift‑left AI delivery: PM/QA as data + chatbot ICs</text>
+
+  <!-- Panels -->
+  <rect x="40" y="52" width="520" height="770" rx="16" fill="url(#oldGrad)" stroke="#ddd"></rect>
+  <rect x="640" y="52" width="520" height="770" rx="16" fill="url(#newGrad)" stroke="#cfe2ff"></rect>
+
+  <!-- Left (Old) swimlanes -->
+  <text x="60" y="84" class="swim">PM / QA</text>
+  <line x1="60" y1="94" x2="540" y2="94" stroke="#e4e4e4"></line>
+  <text x="60" y="204" class="swim">Developers / Data Eng</text>
+  <line x1="60" y1="214" x2="540" y2="214" stroke="#e4e4e4"></line>
+  <text x="60" y="364" class="swim">ML / Chatbot Team</text>
+  <line x1="60" y1="374" x2="540" y2="374" stroke="#e4e4e4"></line>
+  <text x="60" y="544" class="swim">Stakeholders / Compliance</text>
+  <line x1="60" y1="554" x2="540" y2="554" stroke="#e4e4e4"></line>
+
+  <!-- Old steps -->
+  <rect x="80" y="110" width="210" height="60" rx="10" class="step"></rect>
+  <text x="90" y="138" class="label">Write integration bullets</text>
+  <text x="90" y="156" class="small">APIs TBD, data TBD</text>
+
+  <rect x="320" y="110" width="210" height="60" rx="10" class="step"></rect>
+  <text x="330" y="138" class="label">Document chatbot intents</text>
+  <text x="330" y="156" class="small">Scripts later</text>
+  <line x1="290" y1="140" x2="320" y2="140" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <rect x="80" y="230" width="210" height="60" rx="10" class="step"></rect>
+  <text x="90" y="258" class="label">Wire real APIs</text>
+  <text x="90" y="276" class="small">Schemas drift, delays</text>
+  <line x1="185" y1="170" x2="185" y2="230" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <rect x="320" y="230" width="210" height="60" rx="10" class="step"></rect>
+  <text x="330" y="258" class="label">Late data cleansing</text>
+  <text x="330" y="276" class="small">Duplicates, PII leaks</text>
+  <line x1="290" y1="260" x2="320" y2="260" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <rect x="80" y="390" width="210" height="60" rx="10" class="step"></rect>
+  <text x="90" y="418" class="label">Model fine‑tuning</text>
+  <text x="90" y="436" class="small">Noisy inputs</text>
+  <line x1="185" y1="290" x2="185" y2="390" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <rect x="320" y="390" width="210" height="60" rx="10" class="step"></rect>
+  <text x="330" y="418" class="label">Chatbot wired late</text>
+  <text x="330" y="436" class="small">Edge cases missed</text>
+  <line x1="290" y1="420" x2="320" y2="420" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <rect x="80" y="570" width="210" height="60" rx="10" class="step"></rect>
+  <text x="90" y="598" class="label">UAT &amp; compliance</text>
+  <text x="90" y="616" class="small">Rework avalanche</text>
+  <line x1="185" y1="450" x2="185" y2="570" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <rect x="320" y="570" width="210" height="60" rx="10" class="step"></rect>
+  <text x="330" y="598" class="label">Hotfix cycles</text>
+  <text x="330" y="616" class="small">Production stress</text>
+  <line x1="290" y1="600" x2="320" y2="600" stroke="#777" marker-end="url(#arrowOld)"></line>
+
+  <!-- Old KPIs -->
+  <text x="60" y="700" class="small">Observed outcomes</text>
+  <rect x="60" y="714" width="500" height="92" rx="10" class="step"></rect>
+  <text x="80" y="740" class="legend kpiOld">Schema drift • PII incidents • Bot deflection too high • Evaluation flakiness</text>
+  <text x="80" y="764" class="legend kpiOld">Late rework • Low stakeholder trust • Slow time‑to‑value</text>
+
+  <!-- Right (New) swimlanes -->
+  <text x="660" y="84" class="swim">PM &amp; QA as ICs</text>
+  <line x1="660" y1="94" x2="1140" y2="94" stroke="#d8e8ff"></line>
+  <text x="660" y="204" class="swim">AI Assistants</text>
+  <line x1="660" y1="214" x2="1140" y2="214" stroke="#d8e8ff"></line>
+  <text x="660" y="354" class="swim">Data Eng / ETL</text>
+  <line x1="660" y1="364" x2="1140" y2="364" stroke="#d8e8ff"></line>
+  <text x="660" y="504" class="swim">Dev / ML &amp; Bot Orchestration</text>
+  <line x1="660" y1="514" x2="1140" y2="514" stroke="#d8e8ff"></line>
+  <text x="660" y="664" class="swim">Stakeholders / Compliance</text>
+  <line x1="660" y1="674" x2="1140" y2="674" stroke="#d8e8ff"></line>
+
+  <!-- New: PM/QA lane -->
+  <rect x="680" y="110" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="690" y="138" class="label">Data contracts &amp; mock APIs</text>
+  <text x="690" y="156" class="small">JSON examples + schemas</text>
+
+  <rect x="920" y="110" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="930" y="138" class="label">Synthetic + anonymized sets</text>
+  <text x="930" y="156" class="small">Edge‑case rich distributions</text>
+  <line x1="900" y1="140" x2="920" y2="140" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+
+  <!-- New: AI Assistants lane -->
+  <rect x="680" y="230" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="690" y="258" class="label">PII/PHI detection rules</text>
+  <text x="690" y="276" class="small">Redaction + masking</text>
+
+  <rect x="920" y="230" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="930" y="258" class="label">Persona &amp; dialogue sims</text>
+  <text x="930" y="276" class="small">Angry, hurried, fraudster</text>
+
+  <line x1="790" y1="170" x2="790" y2="230" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="1030" y1="170" x2="1030" y2="230" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="900" y1="260" x2="920" y2="260" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+
+  <!-- New: Data Eng lane -->
+  <rect x="680" y="380" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="690" y="408" class="label">Canonical mapping + FHIR/CRM/ERP</text>
+  <text x="690" y="426" class="small">Contracts in repo</text>
+
+  <rect x="920" y="380" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="930" y="408" class="label">DQ tests in CI</text>
+  <text x="930" y="426" class="small">Nulls, dupes, integrity</text>
+
+  <line x1="790" y1="290" x2="790" y2="380" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="1030" y1="290" x2="1030" y2="380" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="900" y1="410" x2="920" y2="410" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+
+  <!-- New: Dev/ML & Bot lane -->
+  <rect x="680" y="530" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="690" y="558" class="label">Eval harness &amp; guardrails</text>
+  <text x="690" y="576" class="small">Safety, jailbreak tests</text>
+
+  <rect x="920" y="530" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="930" y="558" class="label">Bot orchestration in CI/CD</text>
+  <text x="930" y="576" class="small">Prompt packs, retrieval</text>
+
+  <line x1="790" y1="440" x2="790" y2="530" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="1030" y1="440" x2="1030" y2="530" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="900" y1="560" x2="920" y2="560" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+
+  <!-- New: Stakeholders/Compliance lane -->
+  <rect x="680" y="690" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="690" y="718" class="label">Early demos with real‑ish data</text>
+  <text x="690" y="736" class="small">Trust via transparency</text>
+
+  <rect x="920" y="690" width="220" height="60" rx="10" class="step stepNew"></rect>
+  <text x="930" y="718" class="label">Telemetry → prompt &amp; rule updates</text>
+  <text x="930" y="736" class="small">Living specs</text>
+
+  <line x1="900" y1="720" x2="920" y2="720" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="790" y1="590" x2="790" y2="690" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+  <line x1="1030" y1="590" x2="1030" y2="690" stroke="#1f6feb" marker-end="url(#arrowNew)"></line>
+
+  <!-- Feedback loop curve -->
+  <path d="M1040,750 C1110,782 1110,828 1040,860" fill="none" stroke="#1f6feb" stroke-width="1.5" marker-end="url(#arrowNew)"></path>
+  <text x="1050" y="850" class="note">Continuous data &amp; chatbot refinement</text>
+
+  <!-- Capability box -->
+  <rect x="660" y="780" width="500" height="42" rx="10" class="box"></rect>
+  <text x="680" y="805" class="legend">
+    Capabilities: mock APIs • synthetic/anonymized data • canonical schemas • DQ gates • eval harness • guardrails • persona sims • telemetry‑driven updates
+  </text>
+
+  <!-- Divider + legend -->
+  <line x1="600" y1="16" x2="600" y2="890" stroke="#e6e6e6" stroke-dasharray="4 6"></line>
+  <rect x="40" y="10" width="12" height="12" fill="#777"></rect><text x="60" y="21" class="legend">Old flows</text>
+  <rect x="160" y="10" width="12" height="12" fill="#1f6feb"></rect><text x="180" y="21" class="legend">Shift‑left flows</text>
+
+  <!-- Footer outcome -->
+  <text x="40" y="894" class="note">
+    Outcomes: fewer integration defects, stable schemas, lower PII risk, higher chatbot CSAT, earlier stakeholder validation, faster time‑to‑value.
+  </text>
+</svg>

@@ -1,0 +1,172 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Old vs New Collaboration Model: PM &amp; QA Shift-Left with AI">
+  <defs>
+    <linearGradient id="oldGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7f7f7"></stop>
+      <stop offset="100%" stop-color="#efefef"></stop>
+    </linearGradient>
+    <linearGradient id="newGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eef7ff"></stop>
+      <stop offset="100%" stop-color="#e6f1ff"></stop>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#555"></path>
+    </marker>
+    <marker id="arrowAcc" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f6feb"></path>
+    </marker>
+    <style>
+      .panelTitle { font: 700 22px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; fill: #222;}
+      .caption { font: 400 14px/1.3 system-ui, -apple-system, Segoe UI, Roboto, Arial; fill: #444;}
+      .box { fill: #fff; stroke: #c8c8c8; stroke-width: 1.2;}
+      .step { fill: #fff; stroke: #bdbdbd; stroke-width: 1.2;}
+      .stepOld { fill: #fff;}
+      .stepNew { fill: #ffffff;}
+      .tag { fill: #fafafa; stroke: #d0d0d0; }
+      .tagText { font: 600 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill: #333;}
+      .label { font: 600 14px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill: #222;}
+      .small { font: 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#444;}
+      .legend { font: 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#333;}
+      .note { font: 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#555;}
+      .swim { font: 600 13px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#555;}
+      .kpi { font: 600 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#0b5; }
+      .kpiOld { fill:#b30; }
+    </style>
+  </defs>
+
+  <!-- Titles -->
+  <text x="300" y="40" class="panelTitle">Old world: Coordination via static docs and meetings</text>
+  <text x="820" y="40" class="panelTitle">New world: PM &amp; QA as AI-powered ICs with living UAT</text>
+
+  <!-- Panels -->
+  <rect x="40" y="60" width="520" height="640" rx="16" fill="url(#oldGrad)" stroke="#ddd"></rect>
+  <rect x="640" y="60" width="520" height="640" rx="16" fill="url(#newGrad)" stroke="#cfe2ff"></rect>
+
+  <!-- Old world swimlanes -->
+  <text x="60" y="90" class="swim">PM / QA</text>
+  <line x1="60" y1="100" x2="540" y2="100" stroke="#e0e0e0"></line>
+  <text x="60" y="200" class="swim">Developers</text>
+  <line x1="60" y1="210" x2="540" y2="210" stroke="#e0e0e0"></line>
+  <text x="60" y="360" class="swim">Stakeholders</text>
+  <line x1="60" y1="370" x2="540" y2="370" stroke="#e0e0e0"></line>
+  <text x="60" y="520" class="swim">UAT / QA</text>
+  <line x1="60" y1="530" x2="540" y2="530" stroke="#e0e0e0"></line>
+
+  <!-- Old world steps -->
+  <rect x="80" y="120" width="200" height="60" rx="10" class="step stepOld"></rect>
+  <text x="90" y="150" class="label">Collect requirements</text>
+  <text x="90" y="168" class="small">Docs, emails, meetings</text>
+
+  <rect x="320" y="120" width="200" height="60" rx="10" class="step stepOld"></rect>
+  <text x="330" y="150" class="label">Write project plan</text>
+  <text x="330" y="168" class="small">Static timelines &amp; scope</text>
+
+  <line x1="280" y1="150" x2="320" y2="150" stroke="#777" marker-end="url(#arrow)"></line>
+
+  <rect x="80" y="230" width="200" height="60" rx="10" class="step stepOld"></rect>
+  <text x="90" y="260" class="label">Dev clarifications</text>
+  <text x="90" y="278" class="small">Endless Q&amp;A post-start</text>
+
+  <line x1="180" y1="180" x2="180" y2="230" stroke="#777" marker-end="url(#arrow)"></line>
+  <rect x="320" y="230" width="200" height="60" rx="10" class="step stepOld"></rect>
+  <text x="330" y="260" class="label">Implement feature</text>
+  <text x="330" y="278" class="small">Ambiguity persists</text>
+  <line x1="280" y1="260" x2="320" y2="260" stroke="#777" marker-end="url(#arrow)"></line>
+
+  <rect x="80" y="390" width="200" height="60" rx="10" class="step stepOld"></rect>
+  <text x="90" y="420" class="label">Stakeholder review</text>
+  <text x="90" y="438" class="small">Late surprises</text>
+  <line x1="420" y1="290" x2="180" y2="390" stroke="#777" marker-end="url(#arrow)"></line>
+
+  <rect x="320" y="550" width="200" height="60" rx="10" class="step stepOld"></rect>
+  <text x="330" y="580" class="label">UAT &amp; bug triage</text>
+  <text x="330" y="598" class="small">Rework &amp; schedule risk</text>
+  <line x1="180" y1="450" x2="420" y2="550" stroke="#777" marker-end="url(#arrow)"></line>
+
+  <!-- Old world KPIs -->
+  <text x="60" y="685" class="caption">Observed outcomes</text>
+  <rect x="60" y="700" width="500" height="60" rx="10" class="box"></rect>
+  <text x="80" y="722" class="legend kpiOld">Long feedback loops • Late defect discovery • Scope creep • Audit gaps • Stressful UAT</text>
+
+  <!-- New world swimlanes -->
+  <text x="660" y="90" class="swim">PM &amp; QA as ICs</text>
+  <line x1="660" y1="100" x2="1140" y2="100" stroke="#d8e8ff"></line>
+  <text x="660" y="200" class="swim">AI Assistants</text>
+  <line x1="660" y1="210" x2="1140" y2="210" stroke="#d8e8ff"></line>
+  <text x="660" y="360" class="swim">Developers &amp; CI/CD</text>
+  <line x1="660" y1="370" x2="1140" y2="370" stroke="#d8e8ff"></line>
+  <text x="660" y="520" class="swim">Stakeholders &amp; UAT</text>
+  <line x1="660" y1="530" x2="1140" y2="530" stroke="#d8e8ff"></line>
+
+  <!-- New world steps top row -->
+  <rect x="680" y="120" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="690" y="148" class="label">Prompted acceptance criteria</text>
+  <text x="690" y="166" class="small">Living DoD per story</text>
+
+  <rect x="920" y="120" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="930" y="148" class="label">Synthetic &amp; anonymized data</text>
+  <text x="930" y="166" class="small">Diverse, edge‑case rich</text>
+
+  <line x1="900" y1="150" x2="920" y2="150" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+
+  <!-- New world AI lane -->
+  <rect x="680" y="230" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="690" y="258" class="label">Persona simulations</text>
+  <text x="690" y="276" class="small">Novice, impatient, fraudster</text>
+
+  <rect x="920" y="230" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="930" y="258" class="label">Compliance-first prompts</text>
+  <text x="930" y="276" class="small">HIPAA, PCI, GDPR checks</text>
+
+  <line x1="900" y1="260" x2="920" y2="260" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+  <line x1="790" y1="180" x2="790" y2="230" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+  <line x1="1030" y1="180" x2="1030" y2="230" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+
+  <!-- New world Dev/CI lane -->
+  <rect x="680" y="390" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="690" y="418" class="label">Auto‑generated tests</text>
+  <text x="690" y="436" class="small">Playwright/Cypress seeds</text>
+
+  <rect x="920" y="390" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="930" y="418" class="label">Executable specs in CI</text>
+  <text x="930" y="436" class="small">Fail fast on drift</text>
+
+  <line x1="900" y1="420" x2="920" y2="420" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+  <line x1="790" y1="290" x2="790" y2="390" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+  <line x1="1030" y1="290" x2="1030" y2="390" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+
+  <!-- New world Stakeholder/UAT lane -->
+  <rect x="680" y="550" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="690" y="578" class="label">Living UAT scripts</text>
+  <text x="690" y="596" class="small">Auto‑regenerated with scope</text>
+
+  <rect x="920" y="550" width="220" height="60" rx="10" class="step stepNew" stroke="#9ec5fe"></rect>
+  <text x="930" y="578" class="label">Telemetry‑driven updates</text>
+  <text x="930" y="596" class="small">Real usage → new tests</text>
+
+  <line x1="900" y1="580" x2="920" y2="580" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+  <line x1="790" y1="450" x2="790" y2="550" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+  <line x1="1030" y1="450" x2="1030" y2="550" stroke="#1f6feb" marker-end="url(#arrowAcc)"></line>
+
+  <!-- Feedback loop -->
+  <path d="M1040,610 C1110,640 1110,690 1040,720" fill="none" stroke="#1f6feb" stroke-width="1.5" marker-end="url(#arrowAcc)"></path>
+  <text x="1050" y="700" class="note">Continuous prompt &amp; data refinement</text>
+
+  <!-- New world tags (capabilities) -->
+  <rect x="660" y="700" width="500" height="60" rx="10" class="box" stroke="#9ec5fe"></rect>
+  <text x="680" y="722" class="legend">
+    Capabilities: synthetic data • anonymization • persona sims • accessibility checks • multilingual UAT •
+    chaos / failure‑chain prompts • policy-as-prompts • definition-of-done in code
+  </text>
+
+  <!-- Legend -->
+  <rect x="40" y="15" width="12" height="12" fill="#777"></rect><text x="60" y="26" class="legend">Old world flows</text>
+  <rect x="160" y="15" width="12" height="12" fill="#1f6feb"></rect><text x="180" y="26" class="legend">New world flows</text>
+
+  <!-- Divider -->
+  <line x1="600" y1="20" x2="600" y2="770" stroke="#e6e6e6" stroke-dasharray="4 6"></line>
+
+  <!-- Subnotes -->
+  <text x="40" y="780" class="note">
+    Shift-left outcome: faster alignment, earlier defect discovery, audit-ready tests, lower UAT stress, higher delivery confidence.
+  </text>
+</svg>

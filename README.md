@@ -6,7 +6,7 @@ The word **"praxis"** means the process of using a theory or lesson in a practic
 
 ## Key Directives
 
-- [Everyone must become an Individual Contributor ("IC") Manifesto](./ai-context-playbooks/everyone-is-an-ic-manifesto.md)
+- [Everyone must become an Individual Contributor ("IC") Manifesto](./ai-context-playbooks/everyone-is-an-ic-manifesto)
 - [AI Native Technical Communications Doctrine](./ai-native-technical-communications-doctrine#readme)
 - [Trustable AI Interactions Engineering Manifesto](./ai-interactions-engineering-manifesto#readme)
 - [AI-Native Tech Stack and Engineering Philosophy for B2B Web Apps Without Frameworks](./ai-native-software-engineering#readme)
