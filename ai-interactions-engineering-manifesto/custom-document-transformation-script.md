@@ -18,7 +18,28 @@ Typical docling triggers:
 * Excel workbooks where sheet structure and header hierarchies must map to first‑class data. ([Docling][1])
 * Scanned or mixed‑quality documents requiring OCR within a unified pipeline. ([Medium][5])
 
+| **Feature**              | **Docling**                                        | **MarkitDown**                                    |
+|--------------------------|---------------------------------------------------|--------------------------------------------------|
+| **Release Date**          | Newer tool (most recent)                          | Mid-range tool                                   |
+| **Technical Requirements**| Requires PyTorch                                  | No PyTorch required                              |
+| **Conversion Quality**    | Exceptional quality, especially for tables        | Struggles with tables and images                 |
+| **Image Handling**        | Embeds images (results in larger file size)       | Struggles with images; no good handling         |
+| **Processing Time**       | Fastest processing time                          | Slowest processing time                          |
+| **File Size**             | Larger file size due to embedded images          | Smaller file size (separate image files)         |
+| **Table Formatting**      | Excellent preservation and formatting            | Poor handling and no table formatting            |
+| **Overall Verdict**       | Best conversion quality, fast processing         | Needs improvement in conversion and speed        |
+
+### Positive Points:
+- **Docling**: Best for high-quality conversion and faster processing. Ideal for handling complex documents, especially with tables and images.
+- **MarkitDown**: A versatile tool for converting a variety of file formats but needs significant optimization for better image and table handling.
+
+### Negative Points:
+- **Docling**: Larger file size due to embedded images.
+- **MarkitDown**: Struggles with conversion quality, especially with tables and images, and has slower processing times.
+
 ## Architecture overview: Docling‑driven per‑document transformation
+
+<img src="./docling-ai-pipeline.svg" alt="Docline Architecture">
 
 ### Intake and triage
 
@@ -98,6 +119,102 @@ Enable OCR in docling when PDFs are image‑based to produce text + layout, pres
 
 Exports
 Always write both Markdown and one of docling’s lossless exports (JSON or DocTags). The JSON is your “truth source” for machine reasoning; Markdown is for human audits and quick LLM grounding. ([Docling][1])
+
+## Integrating Docling into an AI Pipeline
+
+**Docling** leverages advanced AI models for layout analysis and table structure recognition, making it ideal for building AI-driven document processing pipelines ([github.com](https://github.com/docling-project/docling?utm_source=chatgpt.com)).
+
+### Install Docling
+
+To install Docling, run the following command:
+
+```
+
+pip install docling
+
+```
+
+### Convert Documents to Structured Format
+
+Docling can convert documents from various sources (local paths, URLs, etc.) into a structured format. Below is the function to perform the conversion:
+
+```
+from docling.document_converter import DocumentConverter
+def convert_document(source: str):
+    """
+    Convert a document from the given source (local path or URL) into a structured format.
+
+    Parameters:
+    - source (str): Path or URL of the document to convert.
+
+    Returns:
+    - docling.document.DoclingDocument: The structured representation of the document.
+    """
+    converter = DocumentConverter()
+    result = converter.convert(source)
+    return result.document
+
+
+```
+
+### Export to Desired Format
+
+Once the document is converted into a structured format, you can export it to various formats such as JSON, Markdown, or HTML. The function below shows how to export the document:
+
+```
+def export_document(doc, export_type="json"):
+    """
+    Export the structured document to the specified format.
+
+    Parameters:
+    - doc (docling.document.DoclingDocument): The structured document.
+    - export_type (str): The format to export to ("json", "markdown", "html").
+
+    Returns:
+    - str: The exported document as a string.
+    """
+    if export_type == "json":
+        return doc.export_to_dict()
+    elif export_type == "markdown":
+        return doc.export_to_markdown()
+    elif export_type == "html":
+        return doc.export_to_html()
+    else:
+        raise ValueError("Unsupported export type")
+
+```
+
+### Integrate with AI Frameworks (Optional)
+
+Docling integrates seamlessly with AI frameworks like LangChain and Haystack for tasks such as Retrieval-Augmented Generation (RAG). Here's an example of how to set up such a pipeline using LangChain:
+
+```
+from langchain_docling import DoclingLoader
+from langchain_core.prompts import PromptTemplate
+from langchain_huggingface import HuggingFaceEndpoint
+
+def setup_rag_pipeline(doc, model_id, prompt_template):
+    """
+    Set up a Retrieval-Augmented Generation (RAG) pipeline using the provided document and model.
+
+    Parameters:
+    - doc (docling.document.DoclingDocument): The structured document.
+    - model_id (str): The ID of the Hugging Face model to use.
+    - prompt_template (str): The prompt template for the RAG model.
+
+    Returns:
+    - langchain.chains.RetrievalChain: The configured RAG pipeline.
+    """
+    loader = DoclingLoader(doc)
+    documents = loader.load()
+
+    prompt = PromptTemplate.from_template(prompt_template)
+    llm = HuggingFaceEndpoint(repo_id=model_id, task="text-generation")
+
+    # Further setup for RAG pipeline...
+
+```
+
 
 ## Quality gates and acceptance checks
 
