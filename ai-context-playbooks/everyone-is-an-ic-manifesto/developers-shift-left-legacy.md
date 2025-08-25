@@ -22,7 +22,6 @@ Modern AI tools can analyze decades-old codebases, generate comprehensive docume
 * Living documentation updates automatically as code changes, maintaining system knowledge
 * Technical debt is systematically addressed through AI-assisted refactoring and migration strategies
 
-
 ## Core Legacy Development Strategies
 
 ### 1. AI-Powered Legacy Code Analysis and Documentation
@@ -370,4 +369,380 @@ Gradually modernizing legacy systems while maintaining operational continuity re
 
 **Strangler Fig Pattern Implementation:**
 
+```python
+class StranglerFigMigration:
+    def __init__(self):
+        self.route_analyzer = RouteAnalyzer()
+        self.service_generator = ServiceGenerator()
+        self.traffic_manager = TrafficManager()
+    
+    async def plan_migration(self, legacy_system, target_architecture):
+        # Analyze legacy system to identify migration boundaries
+        migration_boundaries = await self.route_analyzer.identify_boundaries(legacy_system)
+        
+        # Generate migration plan with phased approach
+        migration_plan = await self.ai_model.complete(f"""
+            Create a strangler fig migration plan for:
+            
+            Legacy System: {legacy_system.description}
+            Target Architecture: {target_architecture}
+            Migration Boundaries: {migration_boundaries}
+            
+            Provide:
+            1. Phased migration sequence (start with least risky components)
+            2. Traffic routing strategy for gradual cutover
+            3. Data synchronization approach during transition
+            4. Rollback procedures for each phase
+            5. Monitoring and validation checkpoints
+            6. Estimated timeline and resource requirements
+        """)
+        
+        return {
+            'phases': migration_plan.phases,
+            'routing_strategy': migration_plan.routing,
+            'data_sync_plan': migration_plan.data_synchronization,
+            'rollback_procedures': migration_plan.rollback,
+            'monitoring_plan': migration_plan.monitoring
+        }
+    
+    async def implement_phase(self, phase, legacy_system, new_system):
+        # Generate new service implementation
+        new_service = await self.service_generator.generate_service(
+            phase.requirements,
+            legacy_system.interface,
+            new_system.architecture
+        )
+        
+        # Create traffic routing configuration
+        routing_config = await self.traffic_manager.create_routing(
+            phase.traffic_split,
+            legacy_system.endpoints,
+            new_service.endpoints
+        )
+        
+        # Generate data synchronization mechanisms
+        data_sync = await self.create_data_synchronization(
+            legacy_system.data_sources,
+            new_system.data_sources,
+            phase.sync_requirements
+        )
+        
+        return {
+            'new_service': new_service,
+            'routing_config': routing_config,
+            'data_sync': data_sync,
+            'validation_tests': await self.generate_phase_tests(phase),
+            'monitoring_setup': await self.create_phase_monitoring(phase)
+        }
 ```
+
+**Event-Driven Legacy Integration:**
+
+```javascript
+class EventDrivenLegacyIntegration {
+    constructor() {
+        this.eventBus = new EventBus();
+        this.legacyAdapter = new LegacySystemAdapter();
+        this.eventGenerator = new EventGenerator();
+    }
+    
+    async setupEventIntegration(legacySystem, modernSystems) {
+        // Analyze legacy system events and data changes
+        const eventMappings = await this.analyzeEventPatterns(legacySystem);
+        
+        // Generate event schemas and handlers
+        const eventSpecs = await this.eventGenerator.generateEventSpecs(
+            eventMappings,
+            modernSystems.map(s => s.eventRequirements)
+        );
+        
+        // Create bidirectional event adapters
+        const adapters = {};
+        for (const system of modernSystems) {
+            adapters[system.name] = await this.createEventAdapter(
+                legacySystem,
+                system,
+                eventSpecs
+            );
+        }
+        
+        return {
+            eventSpecs: eventSpecs,
+            adapters: adapters,
+            eventBusConfig: await this.configureEventBus(eventSpecs),
+            monitoringSetup: await this.setupEventMonitoring(eventSpecs)
+        };
+    }
+    
+    async createEventAdapter(legacySystem, modernSystem, eventSpecs) {
+        const adapterCode = await this.ai_model.complete(`
+            Create an event adapter that:
+            1. Monitors ${legacySystem.name} for data changes
+            2. Transforms legacy events to modern event format
+            3. Publishes events to event bus with proper schema validation
+            4. Handles event ordering and deduplication
+            5. Implements circuit breaker pattern for resilience
+            6. Includes comprehensive error handling and retry logic
+            
+            Legacy System Interface: ${JSON.stringify(legacySystem.interface)}
+            Modern System Requirements: ${JSON.stringify(modernSystem.eventRequirements)}
+            Event Specifications: ${JSON.stringify(eventSpecs)}
+            
+            Generate TypeScript code with proper error handling and monitoring.
+        `);
+        
+        return {
+            code: adapterCode,
+            config: await this.generateAdapterConfig(legacySystem, modernSystem),
+            tests: await this.generateAdapterTests(adapterCode, eventSpecs)
+        };
+    }
+}
+```
+
+### 5. Legacy Performance Optimization
+
+AI can identify performance bottlenecks and generate optimized solutions without requiring deep system knowledge.
+
+**Performance Analysis and Optimization:**
+
+```python
+class LegacyPerformanceOptimizer:
+    def __init__(self):
+        self.profiler = PerformanceProfiler()
+        self.optimizer = CodeOptimizer()
+        self.cache_designer = CacheDesigner()
+    
+    async def analyze_performance(self, legacy_system):
+        # Comprehensive performance analysis
+        performance_data = await self.profiler.analyze(legacy_system, {
+            'cpu_usage': True,
+            'memory_consumption': True,
+            'database_queries': True,
+            'network_requests': True,
+            'file_io': True,
+            'algorithm_complexity': True
+        })
+        
+        # AI-generated performance optimization recommendations
+        optimization_plan = await self.ai_model.complete(f"""
+            Analyze this performance profile and create optimization recommendations:
+            
+            Performance Data: {performance_data}
+            
+            Provide:
+            1. Top 10 performance bottlenecks ranked by impact
+            2. Specific optimization techniques for each bottleneck
+            3. Estimated performance improvement for each optimization
+            4. Implementation complexity and risk assessment
+            5. Caching strategies and opportunities
+            6. Database query optimizations
+            7. Algorithm improvements and replacements
+        """)
+        
+        return {
+            'bottlenecks': optimization_plan.bottlenecks,
+            'optimizations': optimization_plan.optimizations,
+            'caching_strategy': optimization_plan.caching,
+            'database_optimizations': optimization_plan.database,
+            'implementation_plan': optimization_plan.implementation
+        }
+    
+    async def implement_optimizations(self, optimization_plan, legacy_code):
+        optimized_implementations = {}
+        
+        for optimization in optimization_plan.optimizations:
+            # Generate optimized code
+            optimized_code = await self.optimizer.optimize_code(
+                legacy_code.get_section(optimization.target),
+                optimization.technique,
+                {
+                    'preserve_functionality': True,
+                    'maintain_backwards_compatibility': True,
+                    'include_performance_tests': True
+                }
+            )
+            
+            # Validate optimization doesn't break functionality
+            validation = await self.validate_optimization(
+                legacy_code.get_section(optimization.target),
+                optimized_code
+            )
+            
+            if validation.maintains_functionality:
+                optimized_implementations[optimization.id] = {
+                    'code': optimized_code,
+                    'performance_gain': validation.performance_improvement,
+                    'tests': await self.generate_performance_tests(optimized_code),
+                    'rollback_plan': await self.create_rollback_plan(optimization)
+                }
+        
+        return optimized_implementations
+```
+
+### 6. Automated Testing for Legacy Systems
+
+Legacy systems often lack comprehensive test coverage. AI can generate extensive test suites that validate existing functionality before and after changes.
+
+**Comprehensive Test Generation:**
+
+```python
+class LegacyTestGenerator:
+    def __init__(self):
+        self.behavior_analyzer = BehaviorAnalyzer()
+        self.test_generator = TestGenerator()
+        self.data_generator = TestDataGenerator()
+    
+    async def generate_comprehensive_tests(self, legacy_system):
+        # Analyze existing system behavior
+        behavior_analysis = await self.behavior_analyzer.analyze_system_behavior(
+            legacy_system,
+            {
+                'user_interactions': True,
+                'data_processing': True,
+                'error_conditions': True,
+                'edge_cases': True,
+                'integration_points': True
+            }
+        )
+        
+        # Generate test specifications
+        test_specs = await self.ai_model.complete(f"""
+            Generate comprehensive test specifications for this legacy system:
+            
+            System Behavior Analysis: {behavior_analysis}
+            
+            Create test cases for:
+            1. All identified user interaction patterns
+            2. Data processing and transformation logic
+            3. Error handling and edge cases
+            4. Integration points with external systems
+            5. Performance and load scenarios
+            6. Security and access control
+            7. Data validation and business rules
+            
+            Include test data generation strategies and expected outcomes.
+        """)
+        
+        # Generate actual test implementations
+        test_implementations = {}
+        for test_category in test_specs.categories:
+            implementation = await self.test_generator.generate_tests(
+                test_category,
+                legacy_system.technology_stack,
+                {
+                    'framework': self.determine_test_framework(legacy_system),
+                    'include_mocks': True,
+                    'include_integration_tests': True,
+                    'generate_test_data': True
+                }
+            )
+            test_implementations[test_category.name] = implementation
+        
+        return {
+            'test_specifications': test_specs,
+            'test_implementations': test_implementations,
+            'test_data': await self.generate_test_data(test_specs),
+            'execution_plan': await self.create_test_execution_plan(test_specs)
+        }
+    
+    async def generate_regression_tests(self, legacy_system, planned_changes):
+        # Focus on areas that might be affected by planned changes
+        impact_analysis = await self.analyze_change_impact(legacy_system, planned_changes)
+        
+        regression_tests = await self.test_generator.generate_regression_suite(
+            impact_analysis,
+            {
+                'comprehensive_coverage': True,
+                'automated_execution': True,
+                'performance_benchmarking': True,
+                'data_integrity_checks': True
+            }
+        )
+        
+        return {
+            'regression_suite': regression_tests,
+            'impact_analysis': impact_analysis,
+            'execution_automation': await self.create_automated_execution(regression_tests),
+            'reporting_dashboard': await self.create_test_reporting(regression_tests)
+        }
+```
+
+## Advanced Legacy Development Patterns
+
+### Microservices Extraction from Monoliths
+
+AI can identify service boundaries and generate microservice implementations:
+
+```python
+class MonolithDecomposer:
+    def __init__(self):
+        self.boundary_analyzer = ServiceBoundaryAnalyzer()
+        self.service_generator = MicroserviceGenerator()
+    
+    async def identify_service_boundaries(self, monolith_codebase):
+        # Analyze code dependencies and data flows
+        dependencies = await self.boundary_analyzer.analyze_dependencies(monolith_codebase)
+        
+        # AI-generated service boundary recommendations
+        boundaries = await self.ai_model.complete(f"""
+            Analyze this monolith and identify optimal microservice boundaries:
+            
+            Dependency Analysis: {dependencies}
+            
+            Recommend service boundaries based on:
+            1. Single responsibility principle
+            2. Data ownership and consistency requirements  
+            3. Team ownership and development velocity
+            4. Deployment independence
+            5. Technology stack compatibility
+            6. Performance and latency requirements
+            
+            For each recommended service, provide:
+            - Service purpose and responsibilities
+            - API interface design
+            - Data model and storage requirements
+            - Integration patterns with other services
+        """)
+        
+        return boundaries
+    
+    async def extract_microservice(self, service_definition, monolith_code):
+        # Generate complete microservice implementation
+        microservice = await self.service_generator.generate_service(
+            service_definition,
+            monolith_code,
+            {
+                'framework': 'fastapi',
+                'database': 'postgresql',
+                'include_api_docs': True,
+                'include_monitoring': True,
+                'include_tests': True,
+                'include_deployment': True
+            }
+        )
+        
+        return microservice
+```
+
+## Why Shift-Left Matters for Legacy Development
+
+1. **Legacy Complexity Requires AI Assistance**
+   Legacy systems contain decades of undocumented business logic and technical decisions. AI can rapidly analyze and understand these systems in ways that would take human developers weeks or months.
+
+2. **Risk Mitigation Through Validation**
+   Changes to legacy systems carry high risk. AI-generated prototypes and comprehensive test suites validate changes before they impact production systems.
+
+3. **Modernization Without Disruption**
+   AI enables sophisticated integration patterns that allow gradual modernization while maintaining operational continuity.
+
+4. **Technical Debt Resolution at Scale**
+   AI can identify and resolve technical debt patterns across large codebases systematically, improving maintainability and security.
+
+## Call to Action
+
+Legacy system development in the AI era requires a fundamental shift in approach. Instead of being constrained by the complexity and risk of legacy systems, developers can use AI to rapidly understand, enhance, and modernize these systems with confidence.
+
+Developers who master AI-assisted legacy development will deliver modernization projects faster, with lower risk, and with better outcomes. The key is treating AI as a powerful analysis and generation tool while maintaining rigorous validation and testing practices.
+
+The future of legacy development belongs to developers who can harness AI to unlock the value trapped in legacy systems, transforming technical debt into competitive advantage through intelligent modernization strategies.
