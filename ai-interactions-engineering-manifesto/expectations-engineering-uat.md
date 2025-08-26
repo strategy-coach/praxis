@@ -86,7 +86,7 @@ Change Log Hook: what triggers re-baseline (new model, new prompt, new rules, ne
 
  
 
-#### 1.Deterministic (rules-based)
+#### 1. Deterministic (rules-based)
 
 Design tests like classic software. One run per case is enough.
 Acceptance examples:
@@ -96,7 +96,7 @@ Regression: Keep a “golden set” of inputs/outputs. Any drift is a defect.
 When things change: Re-run the full regression after any rules/data edit.
  
 
-#### 2.Guarded LLM (feels deterministic)
+#### 2. Guarded LLM (feels deterministic)
 
 Test for stable meaning, not identical wording.
 Run more than once. Small text differences shouldn’t fail the case.
@@ -110,7 +110,7 @@ Near-miss tests (edge cases that often wobble).
 Regression: Keep a “golden meaning” set (reference outputs + notes on what variations are acceptable).
  
 
-#### 3.Unguarded LLM (fully probabilistic)
+#### 3. Unguarded LLM (fully probabilistic)
 
 Evaluate by rubric and statistics.
 Run many times and look at rates.
@@ -178,7 +178,7 @@ As part of expectations engineering, we need you to explicitly flag in the UATs 
 
  
 
-#### 1.UAT Strategy, Suites, and Cases
+#### 1. UAT Strategy, Suites, and Cases
 
  
 
@@ -195,7 +195,7 @@ LLMs are extremely capable, but humans are notoriously bad at articulating requi
 
  
 
-#### 2.Test Data / Synthetic Data Availability
+#### 2. Test Data / Synthetic Data Availability
 
  
 
