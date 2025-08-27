@@ -36,6 +36,186 @@ UATs in this context are not static checklists. They are dynamic, versioned docu
 * Parsed into structured test cases using AI and NLP tools.
 * Continuously updated as understanding of the system evolves.
 
+To reduce confusion and make testing fair and repeatable, Every AI-powered feature would be labeled using one of three plain-English categories. These labels describe how predictable the output is, which directly changes how we plan UAT, write test cases, and decide pass/fail.The three categories
+
+ 
+
+#### Deterministic (rules-based)
+What it means: Same input → same output, every time.
+Examples: Classic rule/logic systems (e.g., Prolog, Google Mangle).
+Why it matters for testing: We can check exact answers (like traditional software). Any change in output means something changed in the rules or data.
+ 
+
+#### Guarded LLM (feels deterministic)
+What it means: Uses a probabilistic model (an LLM), but we wrap it with prompts, policies, or a second model that reviews/corrects the first. This reduces variation and feels stable, but it’s not truly exact.
+Examples of guards: Structured prompts, safety filters, “LLM-checks-LLM,” refusal rules.
+Why it matters for testing: We should expect small wording differences. We test for consistency of meaning and safety, not identical strings.
+ 
+
+#### Unguarded LLM (fully probabilistic)
+What it means: A straight LLM response with little/no post-processing.
+Why it matters for testing: More variation by design. We measure quality and safety over multiple runs, not single exact matches.
+ 
+
+### What UAT must declare (and why)…
+
+ 
+
+For every UAT strategy, suite, and test case, please state the category and set expectations that match it. This keeps our pass/fail decisions consistent and auditable.
+
+ 
+
+#### At minimum, each UAT artifact should include:
+
+ 
+
+AI Output Category: Deterministic / Guarded LLM / Unguarded LLM.
+Determinism Expectation: “Exact match every run” (Deterministic) vs. “Minor wording differences OK” (Guarded) vs. “Evaluate over multiple runs” (Unguarded).
+Tolerance & Criteria: What counts as “the same”?
+Deterministic: exact text/number match.
+Guarded: meaning is the same; key fields present; tone/safety upheld.
+Unguarded: quality rubric scores; safety checks; rate of acceptable answers across runs.
+Run Plan: How many runs per test case (e.g., 1 for Deterministic; 5–10 for Guarded; 10–30 for Unguarded depending on risk).
+Configuration Notes: model name/version if relevant, any guardrails enabled, any randomness setting if available (e.g., “temperature”), and any important data snapshot or retrieval source pinned for the test.
+Safety & Compliance Checks: what must never appear (PII, disallowed content), refusal behavior, and escalation path.
+Pass/Fail Rule: the exact bar the case must clear (see examples below).
+Change Log Hook: what triggers re-baseline (new model, new prompt, new rules, new data snapshot).
+ 
+
+### How UAT changes by category…
+
+ 
+
+#### 1. Deterministic (rules-based)
+
+Design tests like classic software. One run per case is enough.
+Acceptance examples:
+Output equals the expected value exactly.
+All boundary conditions return the defined result (e.g., age = 17 rejects; 18 accepts).
+Regression: Keep a “golden set” of inputs/outputs. Any drift is a defect.
+When things change: Re-run the full regression after any rules/data edit.
+ 
+
+#### 2. Guarded LLM (feels deterministic)
+
+Test for stable meaning, not identical wording.
+Run more than once. Small text differences shouldn’t fail the case.
+Acceptance examples:
+Across 10 runs, ≥ 9 produce the same decision and contain all required fields; no safety violations.
+Allowed differences: wording, order, punctuation.
+Special suites to include:
+Guardrail tests (does it refuse when it should?).
+Adversarial prompts (try to bypass guardrails).
+Near-miss tests (edge cases that often wobble).
+Regression: Keep a “golden meaning” set (reference outputs + notes on what variations are acceptable).
+ 
+
+#### 3. Unguarded LLM (fully probabilistic)
+
+Evaluate by rubric and statistics.
+Run many times and look at rates.
+Acceptance examples:
+Over 20 runs, ≥ 90% meet the quality rubric (clarity, correctness, completeness), 0 safety violations.
+For tasks with multiple valid answers, require that each run hits the required facts and tone, even if phrasing differs.
+Special suites to include:
+Diversity/bias checks across demographics and scenarios.
+Safety stress tests for prohibited content.
+Hallucination checks on known-answer questions.
+ 
+
+Sample wording to copy into your UAT docs…
+
+ 
+
+At the strategy level (per project):
+```
+“This release contains all three AI output categories. Features A–B are Deterministic. Feature C is Guarded LLM. Feature D is Unguarded LLM. UAT plans, tolerances, and run counts are set accordingly.”
+
+```
+ 
+
+At the suite level (per feature):
+```
+“Feature C (Guarded LLM): We will run each test case 10 times, require consistent decisions and required fields in ≥ 9/10 runs, and record any safety violation as a fail.”
+ ```
+
+At the test-case level:
+```
+AI Output Category: Guarded LLM
+Purpose: Eligibility explanation paragraph
+Run Count: 10
+Pass Rule: In ≥ 9/10 runs, the explanation contains the three required points (A, B, C), uses professional tone, and avoids restricted content. Minor wording differences are acceptable.
+Data/Config: Model X.Y, guardrail policy v3, data snapshot 2025-08-01.
+Re-baseline Triggers: model update, guardrail policy change, or new data snapshot.
+ ```
+
+### Do/Don’t quick list for authors
+
+Do label the category for every feature and test.
+Do match your pass/fail rule to the category (exact vs. tolerant vs. statistical).
+Do record model/guardrail versions or ruleset versions when relevant.
+Don’t fail a Guarded/Unguarded test just because the words differ if the meaning and safety are correct.
+Don’t approve a feature without stating its category and tolerance up front.
+ 
+
+### UAT Readiness Checklist:
+
+Category declared for each feature
+Suites mapped to category-appropriate methods
+Tolerances defined and agreed
+Safety/bias tests included where needed
+Golden set (exact or meaning) stored
+Re-baseline plan documented
+ 
+
+If we adopt these labels and declarations, UAT becomes clearer, faster, and more defensible—because we’re testing each AI the way it actually behaves.
+
+**Deterministic** → Same input always yields the same output. Required in scenarios where correctness is non-negotiable. We would need to inject tools like Google Mangle, Prolog, etc. (“old style AI”) when required.
+**Probabilistic** → Same input can yield different outputs. Acceptable where creativity, variability, or suggestion is desired. This is all the LLM work as usual (AnythingLLM or OpenAI, for example).
+ 
+
+As part of expectations engineering, we need you to explicitly flag in the UATs where probabilistic behavior is acceptable vs. where strict, repeatable answers are mandatory. Deterministic will take more engineering time.
+
+ 
+
+#### 1. UAT Strategy, Suites, and Cases
+
+ 
+
+User Acceptance Testing needs to be broken into three levels.
+
+ 
+
+UAT Strategy → A high-level narrative describing how end users are expected to experience the system.
+UAT Test Suites → Collections of tests grouped by functionality or scenario, written in “annoying detail” so there’s no ambiguity about the breadth of what’s being tested.
+UAT Test Cases → Individual, concrete examples that flesh out the suites, with explicit input → output → pass/fail criteria.
+ 
+
+LLMs are extremely capable, but humans are notoriously bad at articulating requirements. Without rigorously designed UAT cases, the engineering team will fill in the blanks incorrectly, and we’ll burn time fixing misalignments later. UAT is how we bridge the human ambiguity gap.
+
+ 
+
+#### 2. Test Data / Synthetic Data Availability
+
+ 
+
+The single biggest blocker to high-quality UAT is good test data. We need to decide:
+
+ 
+
+Where will we get realistic, representative datasets? (documents, etc.)
+Do we need to generate synthetic data to simulate user behavior?
+How do we ensure the data covers edge cases and avoids security/privacy risks? And this is where we start to model deterministic vs. non-deterministic.
+ 
+
+Without reliable test data, UAT scenarios will fail to represent real-world usage, and our AI outputs will seem inconsistent or unreliable.
+
+Before implementation is started, rigorous UAT/expectations engineering is needed.
+Concrete UAT scenarios with sample inputs/outputs and pass/fail criteria
+Edge cases & errors, explicit non-goals, and assumptions
+Data sources/constraints (privacy, security, and any training considerations)
+Milestones tied to UAT (what “done” means for each scenario)
+
 #### Key Practices
 
 * QA leads actively challenge UAT documents using AI:
