@@ -39,14 +39,17 @@ Once documents and data sources are ingested via `surveilr`, they can be fed int
 * Markdown representations with frontmatter metadata, auto-generated or authored manually
 * Markdown content querying via SQL
 * Markdown frontmatter/metadata querying via SQL
+* HTML representations with <meta> tags, auto-generated or authored manually
+* HTML content querying via SQL
+* HTML frontmatter/metadata querying via SQL
 
 Using `surveilr`, we remove guesswork from AI prompting. We can write prompts like:
 
 > "Based on the most recent onboarding policy for sales staff, what are the conditions for early access to benefits? Provide section title and effective date."
 
-Because the data is already structured in `surveilr`'s SQLite RSSDs and mapped to Markdown chunks or SQL queries, we can enforce:
+Because the data is already structured in `surveilr`'s SQLite RSSDs and mapped to Markdown or HTML chunks or SQL queries, we can enforce:
 
-* Output must cite the document’s `onboarding_policy.md` chunk `sec-3.paragraph-2` (using Markdown queries in SQL or querying frontmatter)
+* Output must cite the document’s `onboarding_policy.md` chunk `sec-3.paragraph-2` (using Markdown or HTML queries in SQL or querying frontmatter)
 * Answer must reflect only the current version or explicitly include historical context
 
 ### Beyond RAG: surveilr + Graphs and Ontologies

@@ -32,7 +32,7 @@ Our users do not ask our AI, "What is the truth?" They ask, "What does our compa
 
 ### Grounded Trust Comes from Structured B2B Content
 
-The source of truth in this system is the B2B knowledge base, meticulously converted into structured, provenance-enriched Markdown. Trust emerges when:
+The source of truth in this system is the B2B knowledge base, meticulously converted into structured, provenance-enriched Markdown or semantically rich HTML. Trust emerges when:
 
 * The system interacts and provides answers a question solely based on that body of material
 * The answer includes a reference to the specific clause or section it came from

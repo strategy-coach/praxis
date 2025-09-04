@@ -15,7 +15,7 @@ Full text search (FTS) is the most deterministic retrieval strategy and should b
 #### Implementation Guidelines
 
 * Use open-source tools such as Typesense, Meilisearch, or PostgreSQL FTS.
-* Index Markdown chunks with identifiers and section-level metadata (`doc_id`, `heading`, `slug`, etc.).
+* Index Markdown and HTML chunks with identifiers and section-level metadata (`doc_id`, `heading`, `slug`, etc.).
 * Wrap search via an MCP tool (e.g., `fts_lookup`) that:
 
   * Accepts user queries.
@@ -57,11 +57,11 @@ Semantic search via vector databases provides approximate, meaning-aware matchin
 #### Implementation Notes
 
 * Use tools like Qdrant, Weaviate, or LanceDB.
-* Embed Markdown chunks with positional metadata.
+* Embed Markdown and HTML chunks with positional metadata.
 * Integrate via an MCP tool (e.g., `vector_lookup`) configured to:
 
   * Return top-k semantically relevant chunks.
-  * Map embeddings back to their original source Markdown sections.
+  * Map embeddings back to their original source Markdown and HTML sections.
 
 > Important: Whenever semantic results are used, LLMs must still cite based on source chunk IDs (not just semantic embeddings) to preserve traceability.
 
@@ -88,7 +88,7 @@ This structured data layer allows LLMs to reason over concepts instead of relyin
 
 ### Knowledge Graphs (KG): Navigable Evidence Structures
 
-To capture cross-document relationships and user-intelligible explanations, incorporate lightweight knowledge graphs built from Markdown source documents and UAT scenarios.
+To capture cross-document relationships and user-intelligible explanations, incorporate lightweight knowledge graphs built from Markdown or HTML source documents and UAT scenarios.
 
 #### Benefits
 
@@ -119,9 +119,9 @@ LLMs can use these graphs to generate more coherent and explainable responses �
 
 ### Practical Integration Sequence
 
-1. Index all documents into both FTS and vector DB, with references to chunk ID and Markdown path.
+1. Index all documents into both FTS and vector DB, with references to chunk ID and Markdown or HTML path.
 2. Define entity classes and relationships in Protégé, covering terms found in documents.
-3. Derive a lightweight knowledge graph using markdown section headers, cross-references, and UAT insights.
+3. Derive a lightweight knowledge graph using markdown or HTML section headers, cross-references, and UAT insights.
 4. Wrap each retrieval layer in a separate MCP tool, each with logging and fallback capability.
 5. In your LLM orchestrator (e.g., AnythingLLM):
 

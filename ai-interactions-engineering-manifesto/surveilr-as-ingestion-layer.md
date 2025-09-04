@@ -16,10 +16,11 @@ cd www.opsfolio.com/src/ai-context-engineering
 surveilr ingest files -r www.opsfolio.com/src/ai-context-engineering/regime/soc2.prompt.md
 ```
 
-The following command will parse the Markdown file, convert it into JSON, and store it in the `surveilr` database in the uniform_resource_transform table in standardized format.
+The following command will parse the Markdown or HTML file, convert it into JSON, and store it in the `surveilr` database in the uniform_resource_transform table in standardized format.
 
 ```script
 surveilr orchestrate transform-markdown
+surveilr orchestrate transform-html
 ```
 
 ##### **Querying the Ingested Content Using SQL**
@@ -116,7 +117,7 @@ WHERE
 
 1. **Write the CE Script** :
 
-* You write a custom script that specifies what parts of the document or data to capture. For example, a CE could first extranct documents using [markitdown](https://github.com/microsoft/markitdown). Extract headings, paragraphs, or tables from a Markdown file using custom scripts, then insert that data into the `surveilr` database RSSD with SQL Insert statements.
+* You write a custom script that specifies what parts of the document or data to capture. For example, a CE could first extranct documents using [markitdown](https://github.com/microsoft/markitdown). Extract headings, paragraphs, or tables from a Markdown or HTML file using custom scripts, then insert that data into the `surveilr` database RSSD with SQL Insert statements.
 * CEs can use libraries like Python markitdown, Deno command line invocations or other custom tools to process the content.
 
 1. **Run the CE** :

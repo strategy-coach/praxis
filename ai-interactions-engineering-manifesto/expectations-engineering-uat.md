@@ -4,7 +4,7 @@ Start every project by defining what success looks like from the user's perspect
 
 After outlining expectations, develop a User Acceptance Testing (UAT) Strategy and Plan as the next step. UAT defines exactly how the system will be evaluated to ensure it meets those expectations. No coding should begin until UAT criteria are written and agreed upon. This approach follows the philosophy of Acceptance Test-Driven Development (ATDD) – making acceptance test cases the core of the development cycle. In practice, QA engineers and project leads (not just developers) should collaborate to write detailed UAT test cases covering all important user scenarios. These test cases represent the user’s point of view and validate that the system works as intended. By writing them first, the team stays focused on business requirements and user needs throughout development.
 
-> Example UAT Scenario: *“Given a compliance policy document (in Markdown format) for ISO 27001, when a user asks the system ‘What does clause 9.2 require?’ then the system should respond with a concise, correct explanation of clause 9.2 and a citation pointing to the source section in the document.”* This example defines a clear expected behavior (answer with a verifiable source) that can later be tested. You would create many such UAT test cases for various documents and queries (e.g. ask a sales manual about “refund policy”, or a support handbook about “escalation process”) to capture all typical uses of the Q\&A system.
+> Example UAT Scenario: *“Given a compliance policy document (in Markdown or semantic HTML format) for ISO 27001, when a user asks the system ‘What does clause 9.2 require?’ then the system should respond with a concise, correct explanation of clause 9.2 and a citation pointing to the source section in the document.”* This example defines a clear expected behavior (answer with a verifiable source) that can later be tested. You would create many such UAT test cases for various documents and queries (e.g. ask a sales manual about “refund policy”, or a support handbook about “escalation process”) to capture all typical uses of the Q\&A system.
 
 Importantly, QA and project leads must own the expectations and UAT documents. The UAT plan and cases are the first deliverables to be reviewed and approved by stakeholders (with Shahid’s guidance as needed) before coding. This ensures the team builds the *right* thing. By front-loading expectations engineering and UAT design (even leveraging AI to draft scenarios), you create a strong agreement on what “done” looks like. The team essentially writes the exam that the software must pass. This not only keeps development aligned with user needs but also makes later verification easier – if the system fails a UAT test, it’s not ready. Adopting this expectations-first approach will save time and rework, because you won’t implement features that don’t map to an accepted test. In summary, no code without UAT: get non-coders (QA, product owners) to define the acceptance criteria upfront, and only then let developers start coding against those well-defined targets.
 
@@ -32,7 +32,8 @@ We implement a “Shift Left” strategy where UATs are written, challenged, and
 
 UATs in this context are not static checklists. They are dynamic, versioned documents that are:
 
-* Written in machine-readable markdown with YAML frontmatter.
+* Written in machine-readable markdown with YAML frontmatter for non-semantic use cases.
+* Written in machine-readable HTML with meta tags for semantic use cases.
 * Parsed into structured test cases using AI and NLP tools.
 * Continuously updated as understanding of the system evolves.
 
@@ -324,7 +325,7 @@ And most importantly, every output is verifiable, traceable, and grounded in an 
 
 SQL should be the bridge between the expectations layer and the reality of the knowledge layer. How `surveilr` supports expectations engineering:
 
-* Every Expectations Document, UAT Plan, and Test Case authored in Markdown is parsed and ingested by `surveilr` into a relational table of versioned clauses and criteria.
+* Every Expectations Document, UAT Plan, and Test Case authored in Markdown or semantic HTML is parsed and ingested by `surveilr` into a relational table of versioned clauses and criteria.
 * Test coverage can be queried via SQL to ensure alignment between user expectations and what’s actually been documented or delivered.
 * Frontmatter tags like `test_target`, `doc_id`, and `version` allow us to trace UAT coverage across documents and time, helping QA verify if a change in source policy invalidates older tests.
 
