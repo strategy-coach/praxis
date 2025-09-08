@@ -21,7 +21,7 @@ This strategy is not about AI model tuning — it’s about the foundation every
 
 ## Architecture Overview
 
-<img src="./architecture-overview.drawio.svg" alt="Trustable AI Interactions Engineering Architecture">
+<img src="./architecture-overview.svg" alt="Trustable AI Interactions Engineering Architecture">
 
 ## Table of Contents
 
