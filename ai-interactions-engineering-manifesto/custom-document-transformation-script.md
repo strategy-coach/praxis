@@ -44,7 +44,9 @@ Typical docling triggers:
 ### Intake and triage
 
 * Identify document intent (“knowledge object”), critical answerable elements, and citation needs (pages/sections/tables).
+* If there are several documents, a thorough categorization of the documents must be performed, including taxonomy, document ontology, and a comprehensive document analysis.
 * Decide docling vs. MarkItDown; default to docling if layout/semantics are nontrivial. ([Docling][1])
+* It should be indicated that if the complex document does not work with Docling or Markdown, LlamaParse should be tried instead.
 
 ### Per‑document script (Python primary, orchestrated by `surveilr` CapEx)
 
@@ -66,6 +68,7 @@ Typical docling triggers:
 ### QA and promotion
 
 * Run golden checks (counts of h1/h2, tables, figures), diff fingerprints, and human review before promoting to the knowledge base.
+* After the analysis is completed, a series of prompts and POML should be created to instruct the AI on how to proceed with training the documents to achieve the desired results in the User Acceptance Testing (UAT).
 
 # Per‑document script blueprint
 
