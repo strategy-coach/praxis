@@ -68,7 +68,7 @@ Typical docling triggers:
 ### QA and promotion
 
 * Run golden checks (counts of h1/h2, tables, figures), diff fingerprints, and human review before promoting to the knowledge base.
-* After the analysis is completed, a series of prompts and POML should be created to instruct the AI on how to proceed with training the documents to achieve the desired results in the User Acceptance Testing (UAT).
+* After the analysis is completed, a series of prompts and Prompt Orchestration Markup Language (POML) should be created to instruct the AI on how to proceed with training the documents to achieve the desired results in the User Acceptance Testing (UAT).
 
 # Per‑document script blueprint
 
