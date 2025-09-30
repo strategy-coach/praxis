@@ -14,6 +14,50 @@ See YouTube Video [The Contract-First Prompting Blueprint](https://www.youtube.c
 
 <img src="expectation-uat.drawio.svg" alt="Expectation_UAT Architecture">
 
+### UAT for LLM-based Systems (Chat-based)
+
+1. **It's a scripted conversation, not just a definition.**
+
+   * Instead of "User asks for X; system retrieves Y," we literally write:
+     * **User:** "I'm preparing for a certification exam. Can you summarize the key principles of [specific topic]?"
+     * **System (expected good answer):** "[Explanation of the principles]" [etc.]
+     * **System (bad/edge-case answer):** "Sorry, I don't know," or "[Incorrect response]"
+   * This way, engineering can measure whether responses fall inside or outside the "good" bucket.
+
+2. **It encodes ground truth.**
+
+   * The script needs to reflect what an ideal professional in the field would expect the AI to say.
+   * Without that "golden script," engineering cannot tell if the AI's output is correct, off-topic, hallucinated, or too generic.
+
+3. **It allows us to test both general training and custom training.**
+
+   * Using the same script, we can run the questions against:
+     * An off-the-shelf model (baseline LLM). This can work well without any custom training, and with prompting, it can improve further.
+     * A lightly trained/customized model (e.g., fine-tuned LLM).
+   * The delta between those two results tells us whether training is adding value or not.
+
+4. **It helps balance concerns about over-optimization.**
+
+   * We don't want to turn this into a brittle FAQ. That's why the scripts aren't boundaries; they're benchmarks.
+   * We write the UATs with realistic variation: canonical questions plus edge cases, urgent one-off asks, and even "trick" formulations. That ensures we're testing adaptability, not just memorization.
+
+5. **To make this concrete:**
+
+   * A comprehensive question set can serve as a great raw input list. This can be created quickly using an appropriate prompt.
+   * What's missing is the full back-and-forth script: the user input → expected system response → pass/fail criteria.
+   * Think of it as "writing out the play" (not just the list of scenes).
+
+6. **The fastest way forward is to:**
+
+   * Take an initial script and assume it's the right "style."
+   * Expand it into screenplay format for a subset (e.g., 10–15 Q&As).
+   * Include expected good responses, acceptable variations, and failure examples.
+   * Share that draft. Engineering will then use it to run actual comparisons across models.
+
+7. **Once you do this, you'll see why we call UATs the "only way chat-based AI systems are built."**
+
+   * They're literally the bridge between product intent and engineering feasibility.
+
 ### Expectations Engineering as the First Deliverable
 
 We treat expectations documents as structured hypotheses about what the AI system should accomplish from the end-user’s perspective. This is not just a list of requirements — it's a formal articulation of user intent, acceptable behaviors, and measurable outcomes with trustworthiness definitions (meaning what makes the interactions and answers trustworthy in the business context?).
