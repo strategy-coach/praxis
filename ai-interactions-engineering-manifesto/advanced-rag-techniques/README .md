@@ -437,7 +437,7 @@ Target: >0.95 for production
 Example:
   Answer: "Entity E had metric M = X in period P"
   Context: Contains "metric M = X in period P"
-  ✅ Faithful
+  Faithful
 
   Answer: "Entity E had metric M = X in period P"
   Context: Contains "metric M = Y in period P"
@@ -451,7 +451,7 @@ Target: >0.85
 Example:
   Question: "What's policy P?"
   Answer: "Policy P specifies conditions C..."
-  ✅ Relevant
+  Relevant
 
   Answer: "Policy Q covers..."
   Off-topic
