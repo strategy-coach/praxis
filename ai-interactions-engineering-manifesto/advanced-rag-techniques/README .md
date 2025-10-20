@@ -111,8 +111,7 @@ Can this be answered confidently? (Self-reasoning)
 Provide answer WITH evidence trail
 ```
 
-**[DIAGRAM LOCATION: Insert "traditional-vs-advanced-rag.drawio.svg" here]**
-*Side-by-side comparison flowchart*
+<img src="./traditional-vs-advanced-rag.drawio.svg" alt="traditional-vs-advanced-rag">
 
 ---
 
