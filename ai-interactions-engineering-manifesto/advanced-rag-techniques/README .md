@@ -130,8 +130,7 @@ Each technique in this guide solves a specific failure mode. Think of them as to
 | **Graph RAG** | Relationship queries | "How does X relate to Y?" | Hard | ⭐⭐⭐⭐⭐ |
 | **Self-Reasoning** | Hallucinations | Legal/compliance needs |  Hard | ⭐⭐⭐⭐⭐ |
 
-**[DIAGRAM LOCATION: Insert "technique-decision-tree.drawio.svg" here]**
-*Interactive decision tree: Answer questions to find which technique you need*
+<img src="./technique-selection-decision-tree.drawio.svg" alt="technique-selection-decision-tree">
 
 ---
 
