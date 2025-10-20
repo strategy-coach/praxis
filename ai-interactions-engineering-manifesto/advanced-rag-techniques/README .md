@@ -31,8 +31,7 @@ The system operates at **60% accuracy**. Good enough for prototypes. Terrible fo
 **The Hard Truth:**
 > Basic RAG (chunk → embed → retrieve → generate) treats retrieval like matching vibes. It finds things that *feel* similar, not things that *are* correct.
 
-**[DIAGRAM LOCATION: Insert "basic-rag-failure-modes.drawio.svg" here]**
-*Flowchart showing three common failure modes: semantic drift, broken context, and multi-hop failures*
+<img src="./failure-modes-solutions.drawio.svg" alt="basic-rag-failure-modes">
 
 ---
 
@@ -75,8 +74,7 @@ The realization: **The RAG system wasn't reasoning—it was matching patterns.**
 
 Elite RAG systems aren't magic—they're **engineered with intention**. The journey from 60% to 98% accuracy has four distinct phases:
 
-**[DIAGRAM LOCATION: Insert "four-phase-roadmap.drawio.svg" here]**
-*Interactive timeline showing 4 phases with accuracy targets and key techniques*
+<img src="./implementation-roadmap.drawio.svg" alt="four-phase-implementation-road-map">
 
 ```
 Phase 1: Foundation     → 60-70% accuracy  (Better indexing)
