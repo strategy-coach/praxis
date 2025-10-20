@@ -74,7 +74,7 @@ The realization: **The RAG system wasn't reasoning—it was matching patterns.**
 
 Elite RAG systems aren't magic—they're **engineered with intention**. The journey from 60% to 98% accuracy has four distinct phases:
 
-<img src="./implementation-four-phase-roadmap.drwio.svg" alt="four-phase-implementation-road-map">
+<img src="./implementation-roadmap.drawio.svg" alt="four-phase-implementation-road-map">
 
 ```
 Phase 1: Foundation     → 60-70% accuracy  (Better indexing)
