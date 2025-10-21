@@ -162,9 +162,9 @@ Each technique in this guide solves a specific failure mode. Think of them as to
    □ 100-10K/day - Optimize with Adaptive RAG
    □ >10K/day - Full advanced stack justified
 ```
+should-i-advance-flowchart.drawio.svg
 
-**[DIAGRAM LOCATION: Insert "should-i-advance-flowchart.drawio.svg" here]**
-*Interactive flowchart guiding the decision to advance*
+<img src="./should-i-advance-flowchart.drawio.svg" alt="should I advance flowchart">
 
 ---
 
