@@ -63,12 +63,11 @@ Retrieved: Only Entity A's data (incomplete answer)
 Problem: Needs information from multiple documents
 ```
 
-**[DIAGRAM LOCATION: Insert "failure-mode-anatomy.drawio.svg" here]**
-*Interactive diagram showing how each failure mode occurs with before/after examples*
+<img src="./failure-mode-anatomy.drawio.svg" alt="failure-mode-anatomy">
 
 The realization: **The RAG system wasn't reasoning—it was matching patterns.**
 
----
+
 
 ### Act III: The Path Forward (From 60% to 98%)
 
@@ -226,17 +225,15 @@ Think of a RAG system as a restaurant kitchen:
   - Confidence scoring
   - Fallback handling
 
-**[DIAGRAM LOCATION: Insert "six-layer-architecture-detailed.drawio.svg" here]**
-*Detailed architecture with component interactions*
+<img src="./six-layer-architecture-detailed.drawio.svg" alt="six-layer-architecture">
 
----
+
 
 ## Integration with Praxis Architecture
 
 ### How This Builds on Existing Foundations
 
-**[DIAGRAM LOCATION: Insert "praxis-integration-map.drawio.svg" here]**
-*Network diagram showing connections to existing Praxis components*
+<img src="./praxis-integration-map.drawio.svg" alt="praxis-integration">
 
 Advanced RAG techniques **build upon** (not replace) these Praxis foundations:
 
@@ -419,8 +416,7 @@ Human-Centric → "AI as Colleague" reliability
 
 ## Measuring Success: The RAGAS Framework
 
-**[DIAGRAM LOCATION: Insert "ragas-metrics-explained.drawio.svg" here]**
-*Visual explanation of each RAGAS metric with examples*
+<img src="./ragas-metrics-explained.drawio.svg" alt="rag-metrics">
 
 You can't improve what you don't measure. Advanced RAG requires systematic evaluation.
 
@@ -488,8 +484,7 @@ Example:
 - Latency: 3.2s → 1.8s
 - Explainability: Full citation trail to exact page/section
 
-**[DIAGRAM LOCATION: Insert "case-study-financial-services.drawio.svg" here]**
-*Before/after architecture diagram*
+
 
 **Key Lesson:** For structured documents, reasoning-based retrieval beats embedding similarity.
 
@@ -527,8 +522,7 @@ Example:
 
 ### What Does Advanced RAG Actually Cost?
 
-**[DIAGRAM LOCATION: Insert "cost-benefit-analysis.drawio.svg" here]**
-*Interactive cost calculator showing break-even points*
+<img src="./cost-benefit-analysis.drawio.svg" alt="cost-benifit-analysis">
 
 The critical question: "Is this worth it?"
 
@@ -607,17 +601,17 @@ Here's the honest math:
 
 ---
 
-## Quick Start: Your First 2 Weeks
+## Quick Start: 
 
 Don't read all documents. Start here:
 
-**Week 1: Measure Current State**
+**Measure Current State**
 1. Set up RAGAS evaluation ([04-evaluation-framework.md](04-evaluation-framework.md))
 2. Run baseline on 100 test queries
 3. Identify top 3 failure modes
 4. Calculate cost of being wrong
 
-**Week 2: Implement Quick Win**
+**Implement Quick Win**
 If accuracy < 80%:
 → Implement Contextual Retrieval ([01-retrieval-innovations.md](01-retrieval-innovations.md))
 
@@ -627,7 +621,7 @@ If missing exact terms:
 If low precision:
 → Add reranking ([01-retrieval-innovations.md#reranking](01-retrieval-innovations.md#reranking))
 
-**Week 3: Measure Impact**
+**Measure Impact**
 - Re-run RAGAS evaluation
 - Calculate ROI
 - Decide on Phase 3 or stop here
@@ -636,8 +630,7 @@ If low precision:
 
 ## Navigation Guide: Which Document to Read?
 
-**[DIAGRAM LOCATION: Insert "documentation-navigation.drawio.svg" here]**
-*Interactive guide to documentation based on user role and needs*
+<img src="./documentation-navigation.drawio.svg" alt="document-navigation-guide">
 
 ### By Role:
 
@@ -707,9 +700,8 @@ Advanced RAG is how you build that trust.
 
 ## The Complete Technique Map
 
-**[DIAGRAM LOCATION: Insert "complete-technique-map.drawio.svg" here]**
-*Network diagram showing all techniques, their relationships, and dependencies*
-
+<img src="./complete-technique-map.drawio.svg" alt="commplete-technique-map">
+complete-technique-map.drawio
 Visual guide showing:
 - Which techniques depend on others
 - Which can be implemented independently
@@ -809,10 +801,9 @@ This README references the following Draw.io diagrams (to be created and inserte
 9. `six-layer-architecture-detailed.drawio.svg` - Detailed component view
 10. `praxis-integration-map.drawio.svg` - Integration with existing Praxis
 11. `ragas-metrics-explained.drawio.svg` - RAGAS metrics visual guide
-12. `case-study-financebench.drawio.svg` - Before/after case study
-13. `cost-benefit-analysis.drawio.svg` - ROI calculator
-14. `documentation-navigation.drawio.svg` - Guide to reading order
-15. `complete-technique-map.drawio.svg` - All techniques network diagram
+12. `cost-benefit-analysis.drawio.svg` - ROI calculator
+13. `documentation-navigation.drawio.svg` - Guide to reading order
+14. `complete-technique-map.drawio.svg` - All techniques network diagram
 
 
 
