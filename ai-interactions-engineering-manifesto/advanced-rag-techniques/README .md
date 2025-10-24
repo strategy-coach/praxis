@@ -4,7 +4,6 @@
 
  This isn't just documentation—it's a map for a journey that transforms AI from a glorified search engine into a trusted research partner.
 
----
 
 ## A Typical RAG Journey
 
@@ -14,7 +13,7 @@ Every advanced RAG system follows a predictable evolution. The diagram below map
 
 **What this diagram shows:** The typical progression from basic RAG (60% accuracy) through four distinct phases of enhancement, with each phase addressing specific failure modes and achieving measurable accuracy gains. Notice how most teams get stuck between 70-85% accuracy—this guide shows you how to break through.
 
----
+
 
 ### Act I: The Problem (When Good Enough Isn't Good Enough)
 
@@ -41,7 +40,7 @@ The system operates at **60% accuracy**. Good enough for prototypes. Terrible fo
 
 **What this diagram shows:** A diagnostic framework mapping six failure modes to their solutions. Each failure mode represents a specific way RAG systems break down. The diagram pairs each problem with its pattern-based solution and includes a deployment priority order (1-6) based on risk profile and ROI. Use this as your troubleshooting guide.
 
----
+
 
 ### Act II: The Awakening (Understanding What's Really Happening)
 
@@ -133,7 +132,7 @@ Returns: Attributes(X), Attributes(Y)
 
 The realization: **The RAG system wasn't reasoning—it was matching patterns.**
 
----
+
 
 ### Act III: The Path Forward (From 60% to 98%)
 
@@ -150,7 +149,7 @@ Phase 3: Intelligence   → 85-92% accuracy  (Adaptive processing)
 Phase 4: Mastery        → 92-98% accuracy  (Advanced reasoning)
 ```
 
----
+
 
 ## Understanding the Advanced RAG Landscape
 
@@ -184,7 +183,7 @@ The visual comparison below crystallizes this fundamental shift in approach:
 
 **What this diagram shows:** A side-by-side comparison of traditional RAG (single-path, similarity-based) versus advanced RAG (multi-strategy, validation-based). The diagram illustrates how traditional RAG takes a direct path from query to answer, while advanced RAG includes multiple decision points, validation loops, and adaptive routing. This is the architectural shift that enables the jump from 60% to 98% accuracy.
 
----
+
 
 ## The Technique Arsenal: Your Advanced RAG Toolkit
 
@@ -214,7 +213,7 @@ Each technique in this guide solves a specific failure mode. Think of them as to
 
 **What this diagram shows:** An interactive decision tree that maps your observed symptoms to the right technique. Start with your failure mode (e.g., "missing exact keywords"), follow the decision path, and arrive at the recommended solution with implementation priority. Use this when you're unsure which technique addresses your specific problem.
 
----
+
 
 ## When Should You Advance Beyond Basic RAG?
 
@@ -253,7 +252,7 @@ Each technique in this guide solves a specific failure mode. Think of them as to
 
 **What this diagram shows:** A decision flowchart that considers your accuracy, error cost, query volume, and failure patterns to recommend whether you should advance (and to which phase). Follow the yes/no branches based on your honest assessment. The flowchart accounts for both ROI and technical readiness, ensuring you don't over-engineer or under-invest.
 
----
+
 
 ## The Architecture: How It All Fits Together
 
@@ -270,7 +269,7 @@ The architecture diagram below reveals how all these techniques integrate into a
 
 **What this diagram shows:** The complete seven-layer Advanced RAG architecture, from user input to final response. Each layer (User, Query Processing, Retrieval, Enhancement, Generation, Evaluation, Data) is shown with its key components and data flows. The diagram illustrates how queries are adaptively routed through different retrieval strategies based on complexity, and how validation occurs at multiple stages. This is the "big picture" that shows where each technique fits in the overall system.
 
----
+
 
 ### Layer 1: USER LAYER (The Entry Point)
 
@@ -285,7 +284,7 @@ User Query: "What was Entity X's revenue growth in Q3 2024 compared to industry 
 
 This query enters the system and immediately flows to the Query Processing Layer for analysis.
 
----
+
 
 ### Layer 2: QUERY PROCESSING LAYER (The Intelligence Hub)
 
@@ -324,7 +323,7 @@ Cached Query → Direct answer (no retrieval needed)
 
 **Why this matters:** Not all queries need expensive graph traversal or multi-hop reasoning. Simple questions get fast answers, complex ones get deep analysis. This saves 40-60% on compute costs.
 
----
+
 
 ### Layer 3: RETRIEVAL LAYER (The Search Engine)
 
@@ -423,7 +422,7 @@ Result: Exact text from Section 3.2.1 with page number
 
 **When to use:** Long structured documents (200+ pages), regulatory docs, technical manuals
 
----
+
 
 ### Layer 4: ENHANCEMENT LAYER (The Quality Boosters)
 
@@ -474,7 +473,7 @@ Stage 2: Cross-encoder reranks top 50 → returns top 5 (slow, high precision)
 - Creates multiple embeddings per chunk (summary-level, detail-level, keyword-level)
 - Matches queries at the appropriate abstraction level
 
----
+
 
 ### Layer 5: GENERATION LAYER (The Answer Synthesis)
 
@@ -543,7 +542,7 @@ Fusion: "Industry views vary: Source A highlights benefits [A:p12],
 - **Grounded**: Every claim has a source
 - **Cited**: Inline citations to exact sources
 
----
+
 
 ### Layer 6: EVALUATION & MONITORING LAYER (The Quality Control)
 
@@ -586,7 +585,7 @@ This layer continuously measures and monitors system performance.
 - Failure modes and edge cases
 - Alerts for degraded performance
 
----
+
 
 ### Layer 7: DATA LAYER (Praxis Foundation)
 
@@ -612,7 +611,7 @@ This layer provides the foundational data infrastructure following Praxis princi
 - **Context Management**: Manages context windows efficiently
 - Unified interface for all retrieval methods
 
----
+
 
 ### How The Layers Work Together (End-to-End Flow)
 
@@ -661,7 +660,7 @@ Let's trace a complex query through the entire system:
 
 **Result:** Accurate, grounded, cited answer delivered in ~2.3 seconds with complete audit trail.
 
----
+
 
 ### Key Design Principles
 
@@ -677,7 +676,7 @@ Let's trace a complex query through the entire system:
 
 **What this diagram shows:** A zoomed-in view of the six core operational layers (Ingestion, Indexing, Query Analysis, Retrieval, Reasoning & Ranking, Generation) with specific tools and technologies at each layer. The diagram uses the "restaurant kitchen" metaphor—each layer is labeled with its kitchen equivalent (e.g., "The Pantry" for Indexing, "The Chef" for Reasoning). This helps implementation teams understand exactly what components to build or integrate at each layer.
 
----
+
 
 ## Integration with Praxis Architecture
 
@@ -725,7 +724,7 @@ Cost Aware → ROI analysis for each technique
 Human-Centric → "AI as Colleague" reliability
 ```
 
----
+
 
 ## The Four-Phase Implementation Roadmap
 
@@ -757,9 +756,9 @@ Human-Centric → "AI as Colleague" reliability
 **Time Investment:** T1 time units
 **ROI:** Foundation for all future improvements
 
-**Detailed Guide:** [01-retrieval-innovations.md](./01-retrieval-innovations.md)
 
----
+
+
 
 ### Phase 2: Retrieval Enhancement (70% → 85% accuracy)
 
@@ -789,9 +788,9 @@ Human-Centric → "AI as Colleague" reliability
 **Time Investment:** T2 time units
 **ROI:** Highest impact for effort (quick wins)
 
-**Detailed Guide:** [01-retrieval-innovations.md](01-retrieval-innovations.md#hybrid-search)
 
----
+
+
 
 ### Phase 3: Intelligent Processing (85% → 92% accuracy)
 
@@ -824,9 +823,8 @@ Human-Centric → "AI as Colleague" reliability
 **Time Investment:** T3 time units
 **ROI:** Massive cost savings + better UX
 
-**Detailed Guide:** [02-intelligent-query-processing.md](02-intelligent-query-processing.md)
 
----
+
 
 ### Phase 4: Advanced Mastery (92% → 98% accuracy)
 
@@ -862,11 +860,9 @@ Human-Centric → "AI as Colleague" reliability
 **Time Investment:** T4 time units
 **ROI:** Mission-critical accuracy for high-stakes domains
 
-** Detailed Guides:**
-- [03-hybrid-and-graph-rag.md](03-hybrid-and-graph-rag.md)
-- [01-retrieval-innovations.md#pageindex](01-retrieval-innovations.md#pageindex)
 
----
+
+
 
 ## Measuring Success: The RAGAS Framework
 
@@ -888,13 +884,13 @@ Imagine you're a teacher grading student essays. You wouldn't just say "good job
 
 RAGAS does the same thing for your RAG system - it's an automated "teacher" that grades every answer.
 
----
+
 
 ### The Four Core Metrics (Explained Simply)
 
 Think of these metrics as answering four critical questions about your RAG system's performance:
 
----
+
 
 #### **Metric 1: Faithfulness** (Is the AI making things up?)
 
@@ -937,7 +933,7 @@ BAD Answer (Faithfulness = 0.5):
 
 **When to worry:** If faithfulness drops below 0.90, your system is making too many unsupported claims. Users will lose trust.
 
----
+
 
 #### **Metric 2: Answer Relevance** (Did the AI answer the actual question?)
 
@@ -987,7 +983,7 @@ MEDIOCRE Answer (Relevance = 0.68):
 
 **When to worry:** If relevance drops below 0.75, the system is often answering different questions than what users ask.
 
----
+
 
 #### **Metric 3: Context Precision** (Did the AI find the right information?)
 
@@ -1051,7 +1047,6 @@ Result: Every retrieved chunk is useful.
 
 **When to worry:** If precision drops below 0.70, you're wasting 30%+ of your context window on junk. This increases costs and reduces answer quality.
 
----
 
 #### **Metric 4: Context Recall** (Did the AI find all the important information?)
 
@@ -1126,7 +1121,6 @@ COMPLETE Recall (1.0):
 
 **When to worry:** If recall drops below 0.80, the system is frequently giving incomplete answers that miss important information.
 
----
 
 ### How These Metrics Work Together
 
@@ -1157,7 +1151,7 @@ Low Relevance (0.70):   Often goes off-topic
 Result: Incomplete, noisy, unreliable, rambling answers
 ```
 
----
+
 
 ### Real-World Measurement in Action
 
@@ -1191,7 +1185,7 @@ Result: Customer satisfaction increased by 35%
         Support ticket escalations decreased by 40%
 ```
 
----
+
 
 ### How to Use RAGAS Metrics
 
@@ -1241,7 +1235,7 @@ print(results)
 
 After each change, re-run RAGAS to see if scores improved. Track progress over time.
 
----
+
 
 ### Setting Realistic Targets
 
@@ -1258,9 +1252,8 @@ After each change, re-run RAGAS to see if scores improved. Track progress over t
 - **Medium-stakes:** Wrong answers are annoying but not dangerous → good scores sufficient
 - **Low-stakes:** Wrong answers just mean a bad recommendation → acceptable scores okay
 
-**Detailed Guide:** [04-evaluation-framework.md](04-evaluation-framework.md)
 
----
+
 
 ## Real-World Success Stories
 
@@ -1278,7 +1271,7 @@ After each change, re-run RAGAS to see if scores improved. Track progress over t
 
 **Key Lesson:** For structured documents, reasoning-based retrieval beats embedding similarity.
 
----
+
 
 ### Case Study 2: E-Commerce Platform - Hybrid Search for Attribute Filtering
 
@@ -1291,7 +1284,7 @@ After each change, re-run RAGAS to see if scores improved. Track progress over t
 
 **Key Lesson:** Combine semantic AND lexical search for critical attributes.
 
----
+
 
 ### Case Study 3: Data Query Platform - Significant Time Savings
 
@@ -1304,9 +1297,7 @@ After each change, re-run RAGAS to see if scores improved. Track progress over t
 
 **Key Lesson:** Query classification and adaptive routing have massive ROI.
 
-**All Case Studies:** [07-enterprise-case-studies.md](07-enterprise-case-studies.md)
 
----
 
 ## Cost-Benefit Reality Check
 
@@ -1320,7 +1311,7 @@ The critical question every stakeholder asks: **"Is this investment worth it?"**
 
 Let's break down the real costs and benefits with concrete numbers, not abstract variables.
 
----
+
 
 ### Understanding ROI (Return on Investment)
 
@@ -1341,7 +1332,7 @@ Translation: For every $1 invested, you get back $3.33
 - **<50%** = Questionable (might not be worth the effort)
 - **Negative** = Loss (don't do it)
 
----
+
 
 ### Phase 2: Hybrid Search + Reranking (The Quick Win)
 
@@ -1349,7 +1340,7 @@ Translation: For every $1 invested, you get back $3.33
 
 This is the **highest ROI** phase for most systems. Let's see why with a real example.
 
----
+
 
 #### **Scenario: High-Volume Query System**
 
@@ -1364,7 +1355,7 @@ This is the **highest ROI** phase for most systems. Let's see why with a real ex
   - Cost of errors per period: M × P_escalation × $C per intervention
   - Annual cost: Period cost × number of periods per year
 
----
+
 
 #### **Investment Required:**
 
@@ -1393,7 +1384,6 @@ Recurring: Period cost × periods per year
 Total: One-Time + Recurring
 ```
 
----
 
 #### **Expected Benefits:**
 
@@ -1420,7 +1410,7 @@ Fewer manual interventions:
 
 **Conservative Annual Benefit:** $1,368,750
 
----
+
 
 #### **ROI Calculation:**
 
@@ -1437,7 +1427,7 @@ Payback Period: Total Investment ÷ (Savings per period) time periods
 
 **Verdict:** High ROI systems (over 200%) are typically worth the investment for systems with sufficient query volume and measurable error costs.
 
----
+
 
 ### Phase 3: Adaptive RAG + Query Processing (Cost Optimization)
 
@@ -1445,7 +1435,7 @@ Payback Period: Total Investment ÷ (Savings per period) time periods
 
 This phase saves money by routing queries intelligently.
 
----
+
 
 #### **Scenario: High-Volume Knowledge System**
 
@@ -1458,7 +1448,7 @@ This phase saves money by routing queries intelligently.
 
 **Problem:** Large percentage of queries (example: P_simple%) are simple and could be answered with lower resource usage.
 
----
+
 
 #### **Investment Required:**
 
@@ -1483,7 +1473,7 @@ Infrastructure:
 
 **Total First-Year Cost:** One-Time + Annual Recurring
 
----
+
 
 #### **Expected Benefits:**
 
@@ -1509,7 +1499,7 @@ Annual Savings: Period Savings × periods per year
 - Better user experience
 - Can handle higher query volumes without scaling infrastructure
 
----
+
 
 #### **ROI Calculation:**
 
@@ -1526,7 +1516,7 @@ Payback Period: Total Investment ÷ Savings per period time periods
 
 **Verdict:** Strong ROI for high-volume systems where compute cost optimization is a priority.
 
----
+
 
 ### Phase 4: Graph RAG + PageIndex (Specialized Excellence)
 
@@ -1534,7 +1524,7 @@ Payback Period: Total Investment ÷ Savings per period time periods
 
 This is for **high-stakes, specialized domains** where accuracy is critical.
 
----
+
 
 #### **Scenario: High-Stakes Domain System**
 
@@ -1556,7 +1546,7 @@ With M errors per period, risk of K major errors per evaluation period
 Expected annual cost: K × $E_cost per evaluation period
 ```
 
----
+
 
 #### **Investment Required:**
 
@@ -1583,7 +1573,6 @@ Infrastructure:
 
 **Total First-Year Cost:** One-Time + Annual Recurring
 
----
 
 #### **Expected Benefits:**
 
@@ -1612,7 +1601,7 @@ Additional Benefits:
 
 **Conservative Annual Benefit:** Risk reduction savings + Time savings + Qualitative benefits
 
----
+
 
 #### **ROI Calculation:**
 
@@ -1629,7 +1618,7 @@ Payback Period: Total Investment ÷ (Benefit per period) time periods
 
 **Verdict:** Strong ROI for high-stakes domains (legal, medical, finance, compliance) where errors carry significant financial or reputational costs.
 
----
+
 
 ### Decision Framework: Should You Invest?
 
@@ -1691,7 +1680,7 @@ Decision:
 □ ROI < 50%: Wait or start with smaller improvements
 ```
 
----
+
 
 ### Real-World ROI Comparison
 
@@ -1703,7 +1692,7 @@ Decision:
 | **Low-Volume System (N4 queries/period, low stakes)** | Phase 2 | $I4 | $B4 | **Negative ROI** | Not viable | NOT RECOMMENDED |
 | **Low-Impact Domain (low accuracy requirements)** | Phase 4 | $I5 | $B5 | **Negative ROI** | Not viable | NOT RECOMMENDED |
 
----
+
 
 ### The Key Questions to Ask
 
@@ -1742,7 +1731,7 @@ Before investing in advanced RAG, honestly answer:
   - If you have no metrics, set up RAGAS first (costs ~$5K)
 ```
 
----
+
 
 ### Hidden Costs to Consider
 
@@ -1765,7 +1754,7 @@ Don't forget these often-overlooked costs:
 
 **The Rule:** Only add complexity when the ROI clearly justifies it.
 
----
+
 
 ### Bottom Line: When Is It Worth It?
 
@@ -1785,7 +1774,7 @@ Don't forget these often-overlooked costs:
 
 **The Golden Rule:** Start simple, measure obsessively, advance when justified.
 
----
+
 
 ## Common Pitfalls (What Not to Do)
 
@@ -1800,7 +1789,7 @@ Don't forget these often-overlooked costs:
 
 **The Rule:** Always implement techniques in order. Measure after each phase.
 
----
+
 
 ### 2. Ignoring the "When NOT to Use" Sections
 
@@ -1813,7 +1802,7 @@ Don't forget these often-overlooked costs:
 
 **The Rule:** Every technique has anti-patterns. Read them first.
 
----
+
 
 ### 3. Not Measuring Before Optimizing
 
@@ -1826,34 +1815,33 @@ Don't forget these often-overlooked costs:
 
 **The Rule:** Profile first, optimize second. Use RAGAS metrics.
 
----
+
 
 ## Quick Start: 
 
 Don't read all documents. Start here:
 
 **Measure Current State**
-1. Set up RAGAS evaluation ([04-evaluation-framework.md](04-evaluation-framework.md))
+1. Set up RAGAS evaluation 
 2. Run baseline on 100 test queries
 3. Identify top 3 failure modes
 4. Calculate cost of being wrong
 
 **Implement Quick Win**
 If accuracy < 80%:
-→ Implement Contextual Retrieval ([01-retrieval-innovations.md](01-retrieval-innovations.md))
+→ Implement Contextual Retrieval 
 
 If missing exact terms:
-→ Add BM25 hybrid search ([01-retrieval-innovations.md#hybrid-search](01-retrieval-innovations.md#hybrid-search))
+→ Add BM25 hybrid search md#hybrid-search))
 
 If low precision:
-→ Add reranking ([01-retrieval-innovations.md#reranking](01-retrieval-innovations.md#reranking))
+→ Add reranking 
 
 **Measure Impact**
 - Re-run RAGAS evaluation
 - Calculate ROI
 - Decide on Phase 3 or stop here
 
----
 
 ## Navigation Guide: Which Document to Read?
 
@@ -1863,42 +1851,7 @@ If low precision:
 
 **What this diagram shows:** A role-based navigation flowchart showing recommended reading paths for different team members (Engineering Lead, Backend Engineer, ML Engineer, Product Manager, QA Engineer). Each role has a suggested sequence of documents tailored to their responsibilities. For example, engineering leads start with decision frameworks, while backend engineers jump straight to implementation guides. Use this to avoid information overload and focus on what matters for your role.
 
-### By Role:
 
-**Engineering Lead (Deciding Architecture):**
-1. This README (decision framework)
-2. [08-decision-frameworks.md](08-decision-frameworks.md) (technique selection)
-3. [05-implementation-roadmap.md](05-implementation-roadmap.md) (planning)
-
-**Backend Engineer (Implementing):**
-1. [01-retrieval-innovations.md](01-retrieval-innovations.md) (Phase 2)
-2. [02-intelligent-query-processing.md](02-intelligent-query-processing.md) (Phase 3)
-3. [03-hybrid-and-graph-rag.md](03-hybrid-and-graph-rag.md) (Phase 4)
-
-**ML Engineer (Optimizing Models):**
-1. [06-embedding-optimization.md](06-embedding-optimization.md)
-2. [04-evaluation-framework.md](04-evaluation-framework.md)
-
-**Product Manager / Stakeholder:**
-1. This README (overview)
-2. [07-enterprise-case-studies.md](07-enterprise-case-studies.md) (ROI proof)
-3. [05-implementation-roadmap.md](05-implementation-roadmap.md) (timeline)
-
-### By Problem:
-
-**"The RAG is failing on [specific issue]"**
-→ [08-decision-frameworks.md](08-decision-frameworks.md) (problem diagnosis)
-
-**"Need to justify investment"**
-→ [07-enterprise-case-studies.md](07-enterprise-case-studies.md) (case studies)
-
-**"How to measure if it's working?"**
-→ [04-evaluation-framework.md](04-evaluation-framework.md) (RAGAS)
-
-**"What's the implementation plan?"**
-→ [05-implementation-roadmap.md](05-implementation-roadmap.md) (4-phase plan)
-
----
 
 ## The Philosophy: Advanced RAG as "AI as Colleague"
 
@@ -1927,7 +1880,7 @@ They start saying: *"The AI research assistant showed the evidence..."*
 
 Advanced RAG is how you build that trust.
 
----
+
 
 ## The Complete Technique Map
 
@@ -1937,27 +1890,27 @@ Advanced RAG is how you build that trust.
 
 **What this diagram shows:** A comprehensive network diagram mapping all advanced RAG techniques with their interdependencies, complexity ratings, and impact scores. Arrows show which techniques are prerequisites for others (e.g., you need hybrid search before implementing reranking). Color coding indicates difficulty levels, and star ratings show expected impact. This is your master reference for planning your implementation sequence and understanding the full technique landscape.
 
----
+
 
 ## What's Next?
 
 Here's the action plan after reading this overview:
 
 **1. Assess Current State**
-- [ ] Measure baseline accuracy (use [04-evaluation-framework.md](04-evaluation-framework.md))
-- [ ] Identify failure modes (use [08-decision-frameworks.md](08-decision-frameworks.md))
+- [ ] Measure baseline accuracy 
+- [ ] Identify failure modes 
 - [ ] Calculate cost of being wrong
 
 **2. Choose Your Phase**
 - [ ] Accuracy < 70%? → Start Phase 1
 - [ ] Accuracy 70-85%? → Phase 2 (quick wins)
 - [ ] Accuracy 85-92%? → Phase 3 (intelligence)
-- [ ] High-stakes, need 95%+? → Phase 4 (mastery)
+- [ ] High-stakes, need 95%+ → Phase 4 (mastery)
 
 **3. Read Relevant Deep-Dive**
-- [ ] [01-retrieval-innovations.md](01-retrieval-innovations.md) - Phase 1-2 techniques
-- [ ] [02-intelligent-query-processing.md](02-intelligent-query-processing.md) - Phase 3 techniques
-- [ ] [03-hybrid-and-graph-rag.md](03-hybrid-and-graph-rag.md) - Phase 4 techniques
+- [ ] Phase 1-2 techniques
+- [ ] Phase 3 techniques
+- [ ] Phase 4 techniques
 
 **4. Implement with Praxis Principles**
 - [ ] surveilr for SQL-native grounding
@@ -1970,7 +1923,7 @@ Here's the action plan after reading this overview:
 - [ ] Contribute lessons learned
 - [ ] Help others on the same path
 
----
+
 
 ## Frequently Asked Questions
 
@@ -1989,7 +1942,7 @@ A: Phase 2: T2 time units. Phase 3: T3 time units. Phase 4: T4 time units. Any p
 **Q: What if there are no ML engineers?**
 A: Phase 2 techniques (contextual retrieval, reranking, BM25) are mostly integration work. Use pre-trained models. Phase 4 (Graph RAG, PageIndex) may need specialists.
 
----
+
 
 ## Resources and References
 
@@ -2013,7 +1966,7 @@ A: Phase 2 techniques (contextual retrieval, reranking, BM25) are mostly integra
 - [AI Interactions Engineering Manifesto](../README.md) - The parent doctrine
 - [AI as Colleague](../../ai-context-playbooks/ai-as-colleague-not-tool.md) - The philosophy
 
----
+
 
 ## Diagram Reference
 
@@ -2038,6 +1991,6 @@ This README references the following Draw.io diagrams (to be created and inserte
 
 
 
----
+
 
 > **Remember:** The goal isn't to implement every advanced technique. The goal is to build a system users trust. Start simple, measure obsessively, advance when justified. That's the Praxis way.
