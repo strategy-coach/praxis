@@ -8,9 +8,13 @@
 
 ## A Typical RAG Journey
 
+Every advanced RAG system follows a predictable evolution. The diagram below maps this journey from initial disappointment through systematic improvement to production excellence. You'll recognize your own position on this path.
+
 <img src="./rag-journey-progression.drawio.svg" alt="rag-journy-overview">
 
+**What this diagram shows:** The typical progression from basic RAG (60% accuracy) through four distinct phases of enhancement, with each phase addressing specific failure modes and achieving measurable accuracy gains. Notice how most teams get stuck between 70-85% accuracy—this guide shows you how to break through.
 
+---
 
 ### Act I: The Problem (When Good Enough Isn't Good Enough)
 
@@ -31,49 +35,113 @@ The system operates at **60% accuracy**. Good enough for prototypes. Terrible fo
 **The Hard Truth:**
 > Basic RAG (chunk → embed → retrieve → generate) treats retrieval like matching vibes. It finds things that *feel* similar, not things that *are* correct.
 
+**Why does this happen?** The diagram below reveals six distinct failure patterns that plague RAG systems. Understanding these patterns is the first step toward fixing them.
+
 <img src="./failure-modes-solutions.drawio.svg" alt="basic-rag-failure-modes">
+
+**What this diagram shows:** A diagnostic framework mapping six failure modes to their solutions. Each failure mode represents a specific way RAG systems break down. The diagram pairs each problem with its pattern-based solution and includes a deployment priority order (1-6) based on risk profile and ROI. Use this as your troubleshooting guide.
 
 ---
 
 ### Act II: The Awakening (Understanding What's Really Happening)
 
-Analysis of failure logs reveals **three recurring patterns:**
+Analysis of failure logs reveals **six recurring patterns:**
 
-#### Failure Mode 1: "Vibe Retrieval" (Semantic Drift)
+#### Failure Mode 1: Semantic Mismatch
+**Pattern:** Similar Surface Form, Different Meaning
 ```
-Query: "What's the policy for attribute A in context B?"
-Retrieved: "The policy for attribute A in context C..."
-Problem: Semantically similar, factually wrong
+Pattern:
+Input: Constraint(A AND NOT B)
+Output: Matches A OR B
+(Logical requirements violated)
 ```
 
 **Why it fails:** Vector embeddings compress meaning into similarity scores. Context B and Context C may share semantic properties and appear in similar contexts—they look similar to an embedding model despite being factually different.
 
-#### Failure Mode 2: Broken Context (The "Lost Reference" Problem)
+**Solution:** Hybrid Matching Strategy OR Input Decomposition + Rewriting
+
+#### Failure Mode 2: Incomplete Composite Results
+**Pattern:** Multi-Step Dependencies Unresolved
 ```
-Document Chunk N: "The entity has property value X..."
-Query: "Which entity?"
-Retrieved: Chunk N (but "Entity Name" was mentioned only in Chunk 1)
-Problem: Context broken by chunking boundaries
+Pattern:
+Request: Compare(EntityA, Baseline)
+Returns: Only EntityA
+(Missing reference point)
 ```
 
-#### Failure Mode 3: Multi-Hop Questions (When One Chunk Isn't Enough)
+**Why it fails:** Single-pass retrieval cannot resolve multi-step dependencies where answering the question requires first finding A, then using information from A to find B.
+
+**Solution:** Iterative Resolution OR Dependency Graph Traversal
+
+#### Failure Mode 3: Context Loss
+**Pattern:** Fragmentation of Semantic Scope
 ```
-Query: "Compare Entity A's metric M to benchmark B"
-Retrieved: Only Entity A's data (incomplete answer)
-Problem: Needs information from multiple documents
+Pattern:
+Query: Resolve(ProxyReference)
+Returns: Local fragment
+(Missing binding to scope context)
 ```
 
-<img src="./failure-mode-anatomy.drawio.svg" alt="failure-mode-anatomy">
+**Why it fails:** Chunking boundaries break the connection between references and their definitions, causing the system to retrieve fragments without the necessary context.
+
+**Solution:** Deferred Decomposition OR Context-Aware Segmentation
+
+#### Failure Mode 4: Literal Match Failure
+**Pattern:** Exact Token Requirements Missed
+```
+Pattern:
+Query: Find(UniqueIdentifier)
+Returns: ∅
+(Abstraction layer misses literal)
+```
+
+**Why it fails:** Pure vector search prioritizes semantic similarity over exact matches, causing it to miss specific identifiers, error codes, or product IDs that require literal token matching.
+
+**Solution:** Dual-Mode Matching (Literal + Abstract Layers) - **PRIORITY**
+
+#### Failure Mode 5: Generative Drift
+**Pattern:** Output Deviation from Source
+```
+Pattern:
+Input: Correct grounding data
+Process: Transform(Input)
+Output: Unfaithful derivation
+```
+
+**Why it fails:** LLMs can hallucinate or extrapolate beyond retrieved context, generating plausible-sounding but incorrect information not supported by the source documents.
+
+**Solution:** Verification Loops (Reflect-Assess-Prune Cycles)
+
+#### Failure Mode 6: Relational Gaps
+**Pattern:** Missing Edge Information
+```
+Pattern:
+Query: Relation(X, Y)
+Returns: Attributes(X), Attributes(Y)
+(Missing edge properties)
+```
+
+**Why it fails:** Traditional retrieval focuses on entity attributes but misses the relationships between entities, making it impossible to answer questions about connections, dependencies, or interactions.
+
+**Solution:** Graph-Based Resolution (Structural Topology Queries)
+
+**How do these failures actually occur?** The next diagram breaks down the mechanical process of each failure mode, showing the step-by-step sequence from query to failure.
+
+<img src="./failure-mode-anatomy-6modes.drawio.svg" alt="failure-mode-anatomy-6modes">
+
+**What this diagram shows:** A detailed anatomical view of all six failure modes, illustrating the exact point where basic RAG breaks down for each pattern. Each mode is shown as a 5-step process: the query, the embedding/retrieval steps, and the critical moment of failure. This helps you diagnose which failure mode you're experiencing by matching the symptoms.
 
 The realization: **The RAG system wasn't reasoning—it was matching patterns.**
 
-
+---
 
 ### Act III: The Path Forward (From 60% to 98%)
 
-Elite RAG systems aren't magic—they're **engineered with intention**. The journey from 60% to 98% accuracy has four distinct phases:
+Elite RAG systems aren't magic—they're **engineered with intention**. The journey from 60% to 98% accuracy has four distinct phases. The roadmap below shows you exactly where to invest your effort.
 
 <img src="./implementation-roadmap.drawio.svg" alt="four-phase-implementation-road-map">
+
+**What this diagram shows:** A four-phase implementation roadmap with clear accuracy targets and technique categories for each phase. The visual timeline shows dependencies between phases and estimated effort levels. Most teams achieve 85% accuracy by Phase 2—Phases 3-4 are for specialized, high-stakes use cases.
 
 ```
 Phase 1: Foundation     → 60-70% accuracy  (Better indexing)
@@ -110,7 +178,11 @@ Can this be answered confidently? (Self-reasoning)
 Provide answer WITH evidence trail
 ```
 
+The visual comparison below crystallizes this fundamental shift in approach:
+
 <img src="./traditional-vs-advanced-rag.drawio.svg" alt="traditional-vs-advanced-rag">
+
+**What this diagram shows:** A side-by-side comparison of traditional RAG (single-path, similarity-based) versus advanced RAG (multi-strategy, validation-based). The diagram illustrates how traditional RAG takes a direct path from query to answer, while advanced RAG includes multiple decision points, validation loops, and adaptive routing. This is the architectural shift that enables the jump from 60% to 98% accuracy.
 
 ---
 
@@ -120,15 +192,27 @@ Each technique in this guide solves a specific failure mode. Think of them as to
 
 | Tool | What It Fixes | When You Need It | Difficulty | Impact |
 |------|---------------|------------------|------------|--------|
-| **Contextual Retrieval** | Broken context | References unclear | Easy | ⭐⭐⭐⭐⭐ |
-| **BM25 + Vector** | Missing exact keywords | "Error TS-999" not found |  Easy | ⭐⭐⭐⭐ |
-| **Reranking** | Low precision | Wrong but similar results |  Medium | ⭐⭐⭐⭐⭐ |
-| **Adaptive RAG** | Wasting resources | All queries treated same | Medium | ⭐⭐⭐⭐ |
-| **PageIndex** | Unstructured docs | Lost in 200-page reports |  Hard | ⭐⭐⭐⭐⭐ |
-| **Graph RAG** | Relationship queries | "How does X relate to Y?" | Hard | ⭐⭐⭐⭐⭐ |
-| **Self-Reasoning** | Hallucinations | Legal/compliance needs |  Hard | ⭐⭐⭐⭐⭐ |
+| **Dual-Mode Matching** (BM25 + Vector) | Literal Match Failure | "Error TS-999" not found |  Easy | ⭐⭐⭐⭐⭐ |
+| **Hybrid Matching Strategy** | Semantic Mismatch | Logical requirements violated |  Easy | ⭐⭐⭐⭐ |
+| **Context-Aware Segmentation** | Context Loss | References unclear | Easy | ⭐⭐⭐⭐⭐ |
+| **Iterative Resolution** | Incomplete Composite Results | Multi-step dependencies | Medium | ⭐⭐⭐⭐⭐ |
+| **Deferred Decomposition** | Context Loss | Scope control needed | Medium | ⭐⭐⭐⭐ |
+| **Verification Loops** | Generative Drift | Legal/compliance needs |  Hard | ⭐⭐⭐⭐⭐ |
+| **Graph-Based Resolution** | Relational Gaps | "How does X relate to Y?" | Hard | ⭐⭐⭐⭐⭐ |
+
+**Deployment Order by Risk Profile:**
+1. Dual-Mode Matching (Low risk, high ROI)
+2. Context-Aware Segmentation (High impact)
+3. Deferred Decomposition (Scope control)
+4. Iterative Resolution (Complex queries)
+5. Verification Loops (High-stakes output)
+6. Graph-Based Resolution (Niche domains)
+
+**Which technique should you choose?** The decision tree below guides you through the selection process based on your specific failure symptoms.
 
 <img src="./technique-selection-decision-tree.drawio.svg" alt="technique-selection-decision-tree">
+
+**What this diagram shows:** An interactive decision tree that maps your observed symptoms to the right technique. Start with your failure mode (e.g., "missing exact keywords"), follow the decision path, and arrive at the recommended solution with implementation priority. Use this when you're unsure which technique addresses your specific problem.
 
 ---
 
@@ -150,20 +234,24 @@ Each technique in this guide solves a specific failure mode. Think of them as to
    □ High (regulated domains, critical systems) - Go to Phase 3-4
 
 3. What type of questions fail most?
-   □ Exact keyword misses → BM25 + Vector
-   □ Context confusion → Contextual Retrieval
-   □ Multi-document synthesis → Iterative RAG or Graph RAG
-   □ Relationship queries → Graph RAG
-   □ Hallucinations despite good retrieval → Self-Reasoning
+   □ Literal Match Failure (exact keywords) → Dual-Mode Matching
+   □ Semantic Mismatch → Hybrid Matching Strategy
+   □ Context Loss (references unclear) → Context-Aware Segmentation
+   □ Incomplete Composite Results → Iterative Resolution
+   □ Relational Gaps → Graph-Based Resolution
+   □ Generative Drift (hallucinations) → Verification Loops
 
 4. What's your query volume?
    □ <100/day - Keep it simple, don't over-engineer
    □ 100-10K/day - Optimize with Adaptive RAG
    □ >10K/day - Full advanced stack justified
 ```
-should-i-advance-flowchart.drawio.svg
+
+**Still unsure if you should invest?** The flowchart below walks you through a structured decision process.
 
 <img src="./should-i-advance-flowchart.drawio.svg" alt="should I advance flowchart">
+
+**What this diagram shows:** A decision flowchart that considers your accuracy, error cost, query volume, and failure patterns to recommend whether you should advance (and to which phase). Follow the yes/no branches based on your honest assessment. The flowchart accounts for both ROI and technical readiness, ensuring you don't over-engineer or under-invest.
 
 ---
 
@@ -176,9 +264,11 @@ Think of a RAG system as a restaurant kitchen:
 - **Basic RAG** = Fast food: One process for everything
 - **Advanced RAG** = Michelin-star kitchen: Specialized stations working in harmony
 
+The architecture diagram below reveals how all these techniques integrate into a cohesive system:
+
 <img src="./advanced-rag-architecture.drawio.svg" alt="advanced-rag-architecture-overview">
 
-The diagram above shows the complete Advanced RAG System Architecture with **seven specialized layers** working together to transform user queries into accurate, grounded, and cited responses.
+**What this diagram shows:** The complete seven-layer Advanced RAG architecture, from user input to final response. Each layer (User, Query Processing, Retrieval, Enhancement, Generation, Evaluation, Data) is shown with its key components and data flows. The diagram illustrates how queries are adaptively routed through different retrieval strategies based on complexity, and how validation occurs at multiple stages. This is the "big picture" that shows where each technique fits in the overall system.
 
 ---
 
@@ -581,15 +671,23 @@ Let's trace a complex query through the entire system:
 4. **Complete Auditability**: Every decision logged via surveilr
 5. **Measurable Quality**: RAGAS metrics track performance continuously
 
+**Want to see the technical implementation details?** The detailed architecture diagram below shows each layer's internal components.
+
 <img src="./six-layer-architecture-detailed.drawio.svg" alt="six-layer-architecture">
 
+**What this diagram shows:** A zoomed-in view of the six core operational layers (Ingestion, Indexing, Query Analysis, Retrieval, Reasoning & Ranking, Generation) with specific tools and technologies at each layer. The diagram uses the "restaurant kitchen" metaphor—each layer is labeled with its kitchen equivalent (e.g., "The Pantry" for Indexing, "The Chef" for Reasoning). This helps implementation teams understand exactly what components to build or integrate at each layer.
 
+---
 
 ## Integration with Praxis Architecture
 
 ### How This Builds on Existing Foundations
 
+**How do these advanced techniques fit with existing Praxis principles?** The integration map below shows the connections.
+
 <img src="./praxis-integration-map.drawio.svg" alt="praxis-integration">
+
+**What this diagram shows:** A mapping between existing Praxis architectural components (Markdown as Trust Layer, surveilr SQL-Native Grounding, Vector DB Strategy, MCP Integration) and the new advanced RAG techniques. The diagram shows which advanced techniques enhance which existing foundations, ensuring backward compatibility. For example, "Contextual Retrieval" builds on "Markdown as Trust Layer," while "Hybrid Search" extends the "Vector DB Strategy." Use this to understand that advanced RAG doesn't replace Praxis—it extends it.
 
 Advanced RAG techniques **build upon** (not replace) these Praxis foundations:
 
@@ -772,7 +870,11 @@ Human-Centric → "AI as Colleague" reliability
 
 ## Measuring Success: The RAGAS Framework
 
+**How do you know if your RAG system is actually improving?** The metrics diagram below breaks down the RAGAS evaluation framework.
+
 <img src="./ragas-metrics-explained.drawio.svg" alt="rag-metrics">
+
+**What this diagram shows:** The four core RAGAS metrics (Faithfulness, Answer Relevance, Context Precision, Context Recall) with visual representations of how each is calculated. The diagram includes examples of high vs. low scores for each metric, formulas, and target thresholds. This is your measurement dashboard—use it to establish baselines and track improvements after each phase implementation.
 
 ### Why Measurement Matters
 
@@ -1210,9 +1312,11 @@ After each change, re-run RAGAS to see if scores improved. Track progress over t
 
 ### What Does Advanced RAG Actually Cost?
 
+The critical question every stakeholder asks: **"Is this investment worth it?"** The analysis diagram below provides the framework for answering this.
+
 <img src="./cost-benefit-analysis.drawio.svg" alt="cost-benifit-analysis">
 
-The critical question every stakeholder asks: **"Is this investment worth it?"**
+**What this diagram shows:** A comprehensive cost-benefit analysis framework comparing investment (one-time + recurring costs) versus returns (error reduction, cost savings, productivity gains) for each phase. The diagram includes ROI calculations, payback period estimates, and break-even analysis. Use this to build your business case and determine which phases are worth pursuing based on your query volume and error costs.
 
 Let's break down the real costs and benefits with concrete numbers, not abstract variables.
 
@@ -1753,7 +1857,11 @@ If low precision:
 
 ## Navigation Guide: Which Document to Read?
 
+**Where should you start reading based on your role?** The navigation guide below maps your job function to the most relevant documents.
+
 <img src="./documentation-navigation.drawio.svg" alt="document-navigation-guide">
+
+**What this diagram shows:** A role-based navigation flowchart showing recommended reading paths for different team members (Engineering Lead, Backend Engineer, ML Engineer, Product Manager, QA Engineer). Each role has a suggested sequence of documents tailored to their responsibilities. For example, engineering leads start with decision frameworks, while backend engineers jump straight to implementation guides. Use this to avoid information overload and focus on what matters for your role.
 
 ### By Role:
 
@@ -1823,13 +1931,11 @@ Advanced RAG is how you build that trust.
 
 ## The Complete Technique Map
 
+**How do all these techniques relate to each other?** The complete technique map below shows dependencies and implementation paths.
+
 <img src="./complete-technique-map.drawio.svg" alt="commplete-technique-map">
-complete-technique-map.drawio
-Visual guide showing:
-- Which techniques depend on others
-- Which can be implemented independently
-- Complexity and impact ratings
-- Links to detailed documentation
+
+**What this diagram shows:** A comprehensive network diagram mapping all advanced RAG techniques with their interdependencies, complexity ratings, and impact scores. Arrows show which techniques are prerequisites for others (e.g., you need hybrid search before implementing reranking). Color coding indicates difficulty levels, and star ratings show expected impact. This is your master reference for planning your implementation sequence and understanding the full technique landscape.
 
 ---
 
@@ -1915,7 +2021,7 @@ This README references the following Draw.io diagrams (to be created and inserte
 
 1. `rag-journey-overview.drawio.svg` - Typical RAG journey timeline
 2. `basic-rag-failure-modes.drawio.svg` - Three failure mode patterns
-3. `failure-mode-anatomy.drawio.svg` - Detailed failure analysis
+3. `failure-mode-anatomy-6modes.drawio.svg` - Detailed failure analysis
 4. `four-phase-roadmap.drawio.svg` - Implementation phases timeline
 5. `traditional-vs-advanced-rag.drawio.svg` - Comparison flowchart
 6. `technique-decision-tree.drawio.svg` - Interactive technique selector
